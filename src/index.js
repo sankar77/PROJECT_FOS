@@ -3,10 +3,31 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  HashRouter, Route, Switch
+} from 'react-router-dom';
+import Intro from './components/Intro';
+
+class MainModule extends React.Component{
+  constructor(props){
+    super(props);
+    }
+  render(){
+    return (
+      <div>
+        <HashRouter>
+        <Switch>
+          <Route exact path = "/" component = {Intro}/>
+        </Switch>
+        </HashRouter>
+      </div>
+    )
+  }
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MainModule />
   </React.StrictMode>,
   document.getElementById('root')
 );
