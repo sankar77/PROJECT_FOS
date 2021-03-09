@@ -1,11 +1,19 @@
 import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import NavBar from './components/NavBar';
+import AboutUs from './components/AboutUs';
 
 function App() {
   return (
-    <>
-      <NavBar />
-    </>
+    <Router>
+      <div className="container">
+        <NavBar />
+        <br/>
+        <Route path="/aboutus" exact component={AboutUs} />
+      </div>
+    </Router>
   );
 }
 
