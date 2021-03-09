@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/aboutus', AboutUsRouter);
 
-mongoose.connect('mongodb://localhost:27017', { useNewUrlParser: true, useUnifiedTopology: true }
+mongoose.connect('mongodb://3.17.129.45:27017/AboutUs', { useNewUrlParser: true, useUnifiedTopology: true }
     );
 
 const connection = mongoose.connection;
