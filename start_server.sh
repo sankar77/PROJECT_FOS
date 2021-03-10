@@ -1,2 +1,3 @@
 #!/bin/bash
-cd backend && node index.js
+echo $PWD > sample1.txt
+# cd backend && node index.js
