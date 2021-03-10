@@ -1,3 +1,4 @@
 #!/bin/bash
 echo $PWD > sample1.txt
-# cd backend && node index.js
+cd /home/ec2-user/demo-repo/backend/
+node index.js
