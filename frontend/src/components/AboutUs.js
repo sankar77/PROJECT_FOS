@@ -22,7 +22,7 @@ export default class AboutUs extends Component {
     
 
     componentDidMount() {
-        axios.get(`http://${ipAddress}:5000/aboutus/`)
+        axios.get(`http://${ipAddress}:5000/aboutus/`, {crossDomain: true})
           .then(res => {
             console.log(res.data)
             this.setState({ aboutusall: res.data })
