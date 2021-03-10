@@ -1,1 +1,1 @@
-nodemon index.js
+cd ~/demo-repo/backend && nodemon index.js

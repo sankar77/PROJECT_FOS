@@ -1,1 +1,1 @@
-cd ~/backend && npm install
+cd ~/demo-repo/backend && npm install
