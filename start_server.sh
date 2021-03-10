@@ -1,4 +1,5 @@
 #!/bin/bash
 echo $PWD > sample1.txt
 cd /home/ec2-user/demo-repo/backend/
-node index.js
+npm install pm2@latest -g
+pm2 start index.js
