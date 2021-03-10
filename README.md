@@ -2,6 +2,8 @@
 
 **Course Name:** CSCI 5828 - Foundations of Software Engineering
 
+**Team Name:** `.net_flix`
+
 **Team Members:**
  - Abhinivesh Palusa
  - Sankar Nagarajan
