@@ -18,7 +18,7 @@ export default class AboutUs extends Component {
     
 
     componentDidMount() {
-        axios.get('http://localhost:5000/aboutus/')
+        axios.get('https://main.d8jk9hp5txm1j.amplifyapp.com/aboutus/')
           .then(res => {
             console.log(res.data)
             this.setState({ aboutusall: res.data })

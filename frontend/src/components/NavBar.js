@@ -18,7 +18,7 @@ const NavBar = () => {
                         <a className="nav-link" href="/">Home</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/aboutus">About Us</a>
+                        <a className="nav-link" href="/aboutuspage">About Us</a>
                     </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0 col-6">
