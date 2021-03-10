@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
-const ip = require('ip');
-const ipAddress = ip.address();
-console.log(ip.address());
+// const ipAddress = '';
 
 const Person = props => (
     <ul className="list-group list-group-flush">
@@ -22,9 +19,8 @@ export default class AboutUs extends Component {
     
 
     componentDidMount() {
-        axios.get(`http://${ipAddress}:5000/aboutus/`, {crossDomain: true})
+        axios.get(`http://localhost:5000/aboutus/`, {crossDomain: true})
           .then(res => {
-            console.log(res.data)
             this.setState({ aboutusall: res.data })
           })
           .catch((err) => {
