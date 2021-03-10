@@ -5,11 +5,11 @@ files:
     destination: /home/ec2-user/demo-repo
 hooks:
   Install:
-    - location: ~/demo-repo/scripts/install_dependencies.sh
+    - location: scripts/install_dependencies.sh
       timeout: 300
       runas: root
   ApplicationStart:
-    - location: ~/demo-repo/scripts/start_server.sh
+    - location: scripts/start_server.sh
       timeout: 300
       runas: root
   

@@ -1,2 +1,2 @@
 #!/bin/bash
-cd ~/demo-repo/backend && nodemon index.js
+cd backend && nodemon index.js
