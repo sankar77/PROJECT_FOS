@@ -1,4 +1,4 @@
 #!/bin/bash
-cd backend
+cd ../backend
 npm install
 echo $PWD > sample.txt
