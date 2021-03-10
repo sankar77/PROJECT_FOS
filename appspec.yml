@@ -1,0 +1,15 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/demo-repo
+hooks:
+  BeforeInstall:
+    - location: cd backend && npm install
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: nodemon index.js
+      timeout: 300
+      runas: root
+  
