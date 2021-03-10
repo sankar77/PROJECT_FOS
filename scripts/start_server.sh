@@ -1,1 +1,1 @@
-cd ~/backend && nodemon index.js
+nodemon index.js
