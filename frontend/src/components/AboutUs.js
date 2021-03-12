@@ -4,8 +4,8 @@ import axios from 'axios';
 
 const Person = props => (
     <ul className="list-group list-group-flush">
-        <li className="list-group-item">{props.person.firstname}</li>
-        <li className="list-group-item">{props.person.lastname}</li>
+        <li className="list-group-item">{props.person.firstName}</li>
+        <li className="list-group-item">{props.person.lastName}</li>
         <li className="list-group-item">{props.person.email}</li>
     </ul>
 )

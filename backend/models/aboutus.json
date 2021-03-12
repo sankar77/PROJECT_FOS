@@ -1,27 +1,27 @@
 [
     {
-    "firstname": "Abhinivesh",
-    "lastname": "Palusa",
+    "firstName": "Abhinivesh",
+    "lastName": "Palusa",
     "email": "abpa6308@colorado.edu"
   },
   {
-    "firstname": "Sankar",
-    "lastname": "Nagarajan",
+    "firstName": "Sankar",
+    "lastName": "Nagarajan",
     "email": "sana6469@colorado.edu"
   },
   {
-    "firstname": "Mohan",
-    "lastname": "Dwarampudi",
+    "firstName": "Mohan",
+    "lastName": "Dwarampudi",
     "email": "modw1211@colorado.edu"
   },
   {
-    "firstname": "Tiffany",
-    "lastname": "Phan",
+    "firstName": "Tiffany",
+    "lastName": "Phan",
     "email": "tiph0401@colorado.edu"
   },
   {
-    "firstname": "Neel",
-    "lastname": "Katuri",
+    "firstName": "Neel",
+    "lastName": "Katuri",
     "email": "neka7176@colorado.edu"
   }
 ]
