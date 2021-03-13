@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-const url = 'https://3.141.235.188:5000'
+// import axios from 'axios';
+import { db } from '../firebase';
+
+// const url = 'https://3.141.235.188:5000';
 
 const Person = props => (
     <ul className="list-group list-group-flush">
@@ -19,13 +21,16 @@ export default class AboutUs extends Component {
     
 
     componentDidMount() {
-        axios.get(`${url}/aboutus/`, {crossDomain: true})
-          .then(res => {
-            this.setState({ aboutusall: res.data })
-          })
-          .catch((err) => {
-            console.log(err);
-          })
+        db.collection('aboutus')
+        .get()
+        .then(data => {
+            const aboutUsAllArray = []
+            data.forEach(doc => {                
+                aboutUsAllArray.push(doc.data());
+            });
+            this.setState( {aboutusall: aboutUsAllArray} );
+        })
+        .catch( error => console.log(error) )
       }
 
     aboutusList() {

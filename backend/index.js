@@ -32,6 +32,7 @@ app.use('/aboutus', aboutUsRoutes.routes);
 // http.createServer(app).listen(80);
 // https.createServer(options, app).listen(443);
 
+const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 var server = https.createServer(options, app);
 
 server.listen(config.port, () => {
