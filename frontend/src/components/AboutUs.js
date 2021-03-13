@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-const url = 'http://localhost:5000'
+const url = 'http://3.141.235.188:5000'
 
 const Person = props => (
     <ul className="list-group list-group-flush">
