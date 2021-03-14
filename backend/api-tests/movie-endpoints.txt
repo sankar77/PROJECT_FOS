@@ -62,3 +62,52 @@ Get Release Dates
 Get Reviews
 	GET https://api.themoviedb.org/3/movie/tt0114709/reviews?api_key=42d845ec0caf10ecc9f34f1648197aee
 
+Get Similar Movies
+	GET https://api.themoviedb.org/3/movie/tt0114709/similar?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1
+
+Get Translations
+	GET https://api.themoviedb.org/3/movie/tt0114709/translations?api_key=42d845ec0caf10ecc9f34f1648197aee
+
+Get Videos
+	GET https://api.themoviedb.org/3/movie/tt0114709/videos?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US
+
+Get Watch Providers
+	GET https://api.themoviedb.org/3/movie/tt0114709/watch/providers?api_key=42d845ec0caf10ecc9f34f1648197aee
+
+Rate Movie
+	Create Session:
+	POST https://api.themoviedb.org/3/authentication/session/new?api_key=42d845ec0caf10ecc9f34f1648197aee
+	
+	Error: Session Denied
+	{
+    "success": false,
+    "failure": true,
+    "status_code": 17,
+    "status_message": "Session denied."
+    }
+
+Delete Rating
+	Create Session:
+	POST https://api.themoviedb.org/3/authentication/session/new?api_key=42d845ec0caf10ecc9f34f1648197aee
+
+	Error: Session Denied
+	{
+    "success": false,
+    "failure": true,
+    "status_code": 17,
+    "status_message": "Session denied."
+    }
+Get Latest Movies
+	GET https://api.themoviedb.org/3/movie/latest?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US
+
+Get Now Playing
+	GET https://api.themoviedb.org/3/movie/now_playing?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1
+
+Get Top Rated
+	GET https://api.themoviedb.org/3/movie/top_rated?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1
+
+Get Upcoming
+	GET https://api.themoviedb.org/3/movie/upcoming?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1
+
+
+
