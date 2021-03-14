@@ -1,0 +1,43 @@
+Example TV Show ID: 1402 (The Walking Dead)
+
+TV:
+Get Details:
+Get the primary TV show details by id.
+
+ GET https://api.themoviedb.org/3/tv/1402?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US
+
+Result:
+
+Gives the  info on attributes such as created_by,episode_run_time,first_air_date,genres,homepage,languages,last_air_date,name,next_episode_to_air,networks,original_language.
+
+Get Account states:
+Grab the following account states for a session:
+TV show rating
+If it belongs to your watchlist
+If it belongs to your favourite list
+Result:
+ 
+{
+    "success": false,
+    "status_code": 3,
+    "status_message": "Authentication failed: You do not have permissions to access the service."
+}
+ 
+Get Aggregate Credits:
+Get the aggregate credits (cast and crew) that have been added to a TV show.
+ 
+GET https://api.themoviedb.org/3/tv/1402/aggregate_credits?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US
+ 
+Get content ratings:
+Get the list of content ratings (certifications) that have been added to a TV show.
+https://api.themoviedb.org/3/tv/1402/content_ratings?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US
+
+Get External IDs
+	Gets all the different ids for the show (imdb, facebook, etc)
+	GET
+https://api.themoviedb.org/3/tv/1402/external_ids?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US 
+
+Get Images
+	Gets the images related to the tv show
+	GET
+https://api.themoviedb.org/3/tv/1402/images?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US 
