@@ -41,3 +41,53 @@ Get Images
 	Gets the images related to the tv show
 	GET
 https://api.themoviedb.org/3/tv/1402/images?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US 
+
+Get Keywords
+    Gets the keywords that have been added to a tv show
+    GET
+https://api.themoviedb.org/3/tv/1402/keywords?api_key=42d845ec0caf10ecc9f34f1648197aee 
+
+Get Recommendations
+    Gets recommended tv shows based off of a current one
+    GET
+https://api.themoviedb.org/3/tv/1402/recommendations?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1 
+
+Get Reviews
+    Get the reviews of a tv show
+    GET
+https://api.themoviedb.org/3/tv/1402/reviews?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1 
+
+Get Similar TV Shows
+    Gets a list of similar tv shows based off of keywords and genres
+    GET
+https://api.themoviedb.org/3/tv/1402/similar?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1 
+
+Get Videos
+	Get videos from a tv show, such as Trailer, Teaser, Clip, Featurette, Opening 
+	Credits, Behind the Scenes, Bloopers
+	GET
+https://api.themoviedb.org/3/tv/1402/videos?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US 
+
+Get Latest
+    Get the newest tv shows that have been created
+	GET
+https://api.themoviedb.org/3/tv/latest?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US  
+
+Get TV Airing Today
+    Get a list of tv shows airing today, not based on timezones
+    GET
+https://api.themoviedb.org/3/tv/airing_today?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1 
+
+Get TV on Air:
+    Get a list of shows currently on air
+    GET 
+https://api.themoviedb.org/3/tv/on_the_air?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1 
+
+Get Popular:
+    Get a list of the current popular TV shows on TMDb. This list updates daily.
+    GET
+https://api.themoviedb.org/3/tv/popular?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1 
+
+Get TV Top Rated:
+	Get a list of the top rated TV shows on TMDb.
+	GET https://api.themoviedb.org/3/tv/top_rated?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1
