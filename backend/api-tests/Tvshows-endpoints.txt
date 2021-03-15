@@ -1,0 +1,94 @@
+Example TV Show ID: 1402 (The Walking Dead)
+
+TV:
+Get Details:
+Get the primary TV show details by id.
+
+ GET https://api.themoviedb.org/3/tv/1402?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US
+
+Result:
+
+Gives the  info on attributes such as created_by,episode_run_time,first_air_date,genres,homepage,languages,last_air_date,name,next_episode_to_air,networks,original_language.
+
+Get Account states:
+Grab the following account states for a session:
+TV show rating
+If it belongs to your watchlist
+If it belongs to your favourite list
+Result:
+ 
+{
+    "success": false,
+    "status_code": 3,
+    "status_message": "Authentication failed: You do not have permissions to access the service."
+}
+ 
+Get Aggregate Credits:
+Get the aggregate credits (cast and crew) that have been added to a TV show.
+ 
+GET https://api.themoviedb.org/3/tv/1402/aggregate_credits?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US
+ 
+Get content ratings:
+Get the list of content ratings (certifications) that have been added to a TV show.
+https://api.themoviedb.org/3/tv/1402/content_ratings?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US
+
+Get External IDs
+	Gets all the different ids for the show (imdb, facebook, etc)
+	GET
+https://api.themoviedb.org/3/tv/1402/external_ids?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US 
+
+Get Images
+	Gets the images related to the tv show
+	GET
+https://api.themoviedb.org/3/tv/1402/images?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US
+Use this URL to get images https://image.tmdb.org/t/p/original/[poster_path]
+
+Get Keywords
+    Gets the keywords that have been added to a tv show
+    GET
+https://api.themoviedb.org/3/tv/1402/keywords?api_key=42d845ec0caf10ecc9f34f1648197aee 
+
+Get Recommendations
+    Gets recommended tv shows based off of a current one
+    GET
+https://api.themoviedb.org/3/tv/1402/recommendations?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1 
+
+Get Reviews
+    Get the reviews of a tv show
+    GET
+https://api.themoviedb.org/3/tv/1402/reviews?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1 
+
+Get Similar TV Shows
+    Gets a list of similar tv shows based off of keywords and genres
+    GET
+https://api.themoviedb.org/3/tv/1402/similar?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1 
+
+Get Videos
+	Get videos from a tv show, such as Trailer, Teaser, Clip, Featurette, Opening 
+	Credits, Behind the Scenes, Bloopers
+	GET
+https://api.themoviedb.org/3/tv/1402/videos?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US 
+
+Get Latest
+    Get the newest tv shows that have been created
+	GET
+https://api.themoviedb.org/3/tv/latest?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US  
+
+Get TV Airing Today
+    Get a list of tv shows airing today, not based on timezones
+    GET
+https://api.themoviedb.org/3/tv/airing_today?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1 
+
+Get TV on Air:
+    Get a list of shows currently on air
+    GET 
+https://api.themoviedb.org/3/tv/on_the_air?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1 
+
+Get Popular:
+    Get a list of the current popular TV shows on TMDb. This list updates daily.
+    GET
+https://api.themoviedb.org/3/tv/popular?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1 
+
+Get TV Top Rated:
+	Get a list of the top rated TV shows on TMDb.
+	GET https://api.themoviedb.org/3/tv/top_rated?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1
