@@ -5,6 +5,8 @@ Find movies
 
 Get Movie Details
 	GET https://api.themoviedb.org/3/movie/tt0114709?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&external_source=imdb_id
+	
+	Poster path is included. Append path to: https://image.tmdb.org/t/p/original/ 
 
 Get Account States
 	1. Generate request token first
@@ -37,8 +39,6 @@ Get external IDs for a movie
 
 Get images
 	GET https://api.themoviedb.org/3/movie/tt0114709/images?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US
-
-	Returns an image id. What do we do with this ID?
 
 Get Keywords
 	GET https://api.themoviedb.org/3/movie/tt0114709/keywords?api_key=42d845ec0caf10ecc9f34f1648197aee
