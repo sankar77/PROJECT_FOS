@@ -40,7 +40,8 @@ https://api.themoviedb.org/3/tv/1402/external_ids?api_key=42d845ec0caf10ecc9f34f
 Get Images
 	Gets the images related to the tv show
 	GET
-https://api.themoviedb.org/3/tv/1402/images?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US 
+https://api.themoviedb.org/3/tv/1402/images?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US
+Use this URL to get images https://image.tmdb.org/t/p/original/[poster_path]
 
 Get Keywords
     Gets the keywords that have been added to a tv show
