@@ -1,0 +1,113 @@
+Example Movie ID for Toy Story: tt0114709
+
+Find movies
+	GET https://api.themoviedb.org/3/find/tt0114709?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&external_source=imdb_id
+
+Get Movie Details
+	GET https://api.themoviedb.org/3/movie/tt0114709?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&external_source=imdb_id
+	
+	Poster path is included. Append path to: https://image.tmdb.org/t/p/original/ 
+
+Get Account States
+	1. Generate request token first
+		GET https://api.themoviedb.org/3/authentication/token/new?api_key=42d845ec0caf10ecc9f34f1648197aee
+	2. Create session from request token
+		POST https://api.themoviedb.org/3/authentication/session/new?api_key=42d845ec0caf10ecc9f34f1648197aee&request_token=1d747db2cb9641b24113ab5884aa341f35c57e0e
+	3. Create get request to fetch account state
+		GET https://api.themoviedb.org/3/movie/{movie_id}/account_states?api_key=42d845ec0caf10ecc9f34f1648197aee&session_id=<session_id>
+
+
+	Error 1: Unable to create a session ID from request token
+	{
+   		"success": false,
+   		"failure": true,
+   		"status_code": 17,
+   		"status_message": "Session denied."
+	}
+
+Get Alternative Titles
+	GET https://api.themoviedb.org/3/movie/tt0114709/alternative_titles?api_key=42d845ec0caf10ecc9f34f1648197aee
+
+Get Changes for a movie - can specify date range of changes 
+	GET https://api.themoviedb.org/3/movie/tt0114709/changes?api_key=42d845ec0caf10ecc9f34f1648197aee&page=1
+
+Get cast and crew for a movie
+	GET https://api.themoviedb.org/3/movie/tt0114709/credits?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US
+
+Get external IDs for a movie
+	GET https://api.themoviedb.org/3/movie/tt0114709/external_ids?api_key=42d845ec0caf10ecc9f34f1648197aee
+
+Get images
+	GET https://api.themoviedb.org/3/movie/tt0114709/images?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US
+
+Get Keywords
+	GET https://api.themoviedb.org/3/movie/tt0114709/keywords?api_key=42d845ec0caf10ecc9f34f1648197aee
+
+Get Lists
+	GET https://api.themoviedb.org/3/movie/tt0114709/lists?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1
+
+Get Recommended Movies for a Movie
+	GET https://api.themoviedb.org/3/movie/tt0114709/recommendations?api_key=42d845ec0caf10ecc9f34f1648197aee
+
+	Error 2:
+	{
+   	"success": false,
+   	"status_code": 34,
+   	"status_message": "The resource you requested could not be found."
+	}
+
+Get Release Dates
+	GET https://api.themoviedb.org/3/movie/tt0114709/release_dates?api_key=42d845ec0caf10ecc9f34f1648197aee
+
+Get Reviews
+	GET https://api.themoviedb.org/3/movie/tt0114709/reviews?api_key=42d845ec0caf10ecc9f34f1648197aee
+
+Get Similar Movies
+	GET https://api.themoviedb.org/3/movie/tt0114709/similar?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1
+
+Get Translations
+	GET https://api.themoviedb.org/3/movie/tt0114709/translations?api_key=42d845ec0caf10ecc9f34f1648197aee
+
+Get Videos
+	GET https://api.themoviedb.org/3/movie/tt0114709/videos?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US
+
+Get Watch Providers
+	GET https://api.themoviedb.org/3/movie/tt0114709/watch/providers?api_key=42d845ec0caf10ecc9f34f1648197aee
+
+Rate Movie
+	Create Session:
+	POST https://api.themoviedb.org/3/authentication/session/new?api_key=42d845ec0caf10ecc9f34f1648197aee
+	
+	Error: Session Denied
+	{
+    "success": false,
+    "failure": true,
+    "status_code": 17,
+    "status_message": "Session denied."
+    }
+
+Delete Rating
+	Create Session:
+	POST https://api.themoviedb.org/3/authentication/session/new?api_key=42d845ec0caf10ecc9f34f1648197aee
+
+	Error: Session Denied
+	{
+    "success": false,
+    "failure": true,
+    "status_code": 17,
+    "status_message": "Session denied."
+    }
+Get Latest Movies
+	GET https://api.themoviedb.org/3/movie/latest?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US
+
+Get Now Playing
+	GET https://api.themoviedb.org/3/movie/now_playing?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1
+
+Get Top Rated
+	GET https://api.themoviedb.org/3/movie/top_rated?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1
+
+Get Upcoming
+	GET https://api.themoviedb.org/3/movie/upcoming?api_key=42d845ec0caf10ecc9f34f1648197aee&language=en-US&page=1
+
+
+
