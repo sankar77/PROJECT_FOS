@@ -8,6 +8,13 @@
 /backend/node_modules
 /backend/certs
 
+# datasets
+/backend/title.*
+/backend/*.json
+
+# checkpoints
+/backend/preprocessing/.ipynb_checkpoints
+
 # testing
 /coverage
 
