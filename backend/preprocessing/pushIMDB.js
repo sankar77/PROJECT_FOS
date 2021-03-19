@@ -8,7 +8,7 @@ const firestore = firebase.firestore();
 
 const jsonStream = StreamArray.withParser();
 
-fs.createReadStream('show_mappings.json').pipe(jsonStream.input);
+fs.createReadStream('show_mappings_4.json').pipe(jsonStream.input);
 
 jsonStream.on('data', async ({key, value}) => {
     await firestore.collection('imdb_shows').doc().set(value);
