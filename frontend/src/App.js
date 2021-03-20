@@ -9,7 +9,7 @@ import {AuthProvider} from './contexts/AuthProvider';
 
 function App() {
     return (
-        // <AuthProvider>
+        <AuthProvider>
             <Router>
                 <div className="container">
                     <NavBar/>
@@ -18,7 +18,7 @@ function App() {
                     <Route path="/register" exact component={Register}/>
                 </div>
             </Router>
-        //</AuthProvider>
+        </AuthProvider>
     );
 }
 

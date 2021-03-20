@@ -1,20 +1,35 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import firebase from '../firebase';
-import PropTypes from 'prop-types';
 
-export const AuthContext = React.createContext();
+const AuthContext = React.createContext();
 
-export const AuthProvider = ({children}) => {
-
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        firebase.auth().onAuthStateChanged(setUser(user));
-    }, []);
-
-    return (
-        <AuthContext.Provider value={{user}}> {children} </AuthContext.Provider>
-    );
+export function useAuth() {
+    return useContext(AuthContext);
 }
 
-AuthProvider.propTypes = {};
+export const AuthProvider = ({children}) => {
+    const [user, setUser] = useState(null);
+
+    const signUp = (email, password) => {
+        return firebase.auth().createUserWithEmailAndPassword(email, password);
+    }
+
+    useEffect(() => {
+        const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+            setUser(user)
+        });
+
+        return unsubscribe;
+    }, []);
+
+    const value = {
+        user,
+        signUp
+    };
+
+    return (
+        <AuthContext.Provider value={value}>
+            {children}
+        </AuthContext.Provider>
+    );
+}
