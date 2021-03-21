@@ -9,23 +9,20 @@ import ShowCard from './components/ShowCard';
 
 function App() {
   return (
-    <Router>
-      <Container>
+    <>
+      <Router>
         <NavBar />
-        
-          <Container className="justify-content-around" style={{display:'flex'}}>
-            <Row>
-              <Col><ShowCard id="tt0114709" movie="true"/></Col>
-              <Col><ShowCard id="1402" movie="false"/></Col>
-              <Col><ShowCard id="tt0114709" movie="true"/></Col>
-            </Row>
-          </Container>
-        
-        <br/>
-        
         <Route path="/aboutuspage" exact component={AboutUs} />
-        </Container>
-    </Router>
+      </Router>
+
+      <Container className="justify-content-around" style={{display:'flex'}}>
+        <Row>
+          <Col><ShowCard id="tt0114709" movie="true"/></Col>
+          <Col><ShowCard id="1402" movie="false"/></Col>
+          <Col><ShowCard id="tt0114709" movie="true"/></Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 
