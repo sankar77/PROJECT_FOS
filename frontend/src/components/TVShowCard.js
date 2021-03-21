@@ -5,7 +5,7 @@ const apiKey="42d845ec0caf10ecc9f34f1648197aee";
 const imageBase = "http://image.tmdb.org/t/p/w185";
 const videoBase = "https://www.youtube.com/watch?v=";
 
-class MovieCard extends Component {
+class TVShowCard extends Component {
 
     constructor(props) {
         super();
@@ -18,8 +18,7 @@ class MovieCard extends Component {
             crew: [],
             reviews: [],
             videos: [],
-            providers: [],
-            summary: ""
+            providers: []
         }
     }
 
@@ -33,7 +32,7 @@ class MovieCard extends Component {
 
     fetchDetails(){
 
-        const url = `https://api.themoviedb.org/3/movie/${this.state.showID}?api_key=${apiKey}&language=en-US&external_source=imdb_id`;
+        const url = `https://api.themoviedb.org/3/tv/${this.state.showID}?api_key=${apiKey}&language=en-US`;
         
         fetch(url)
         .then(response => response.json())
@@ -41,14 +40,13 @@ class MovieCard extends Component {
             this.setState({
                 detailsData: data,
                 genres: data.genres.map( genreInfo => genreInfo.name ),
-                productionCompanies: data.production_companies.map( prodInfo => prodInfo.name ),
-                summary: data.overview
+                productionCompanies: data.production_companies.map( prodInfo => prodInfo.name )
             }));
         
     }
 
     fetchCastAndCrew() {
-        const url = `https://api.themoviedb.org/3/movie/${this.state.showID}/credits?api_key=${apiKey}&language=en-US`;
+        const url = `https://api.themoviedb.org/3/tv/${this.state.showID}/aggregate_credits?api_key=${apiKey}&language=en-US`;
 
         fetch(url)
         .then(response => response.json())
@@ -60,7 +58,7 @@ class MovieCard extends Component {
 
     fetchReviews() {
         
-        const url = `https://api.themoviedb.org/3/movie/${this.state.showID}/reviews?api_key=${apiKey}`;
+        const url = `https://api.themoviedb.org/3/tv/${this.state.showID}/reviews?api_key=${apiKey}&language=en-US`;
 
         fetch(url)
         .then(response => response.json())
@@ -71,7 +69,7 @@ class MovieCard extends Component {
 
     fetchVideos() {
 
-        const url = `https://api.themoviedb.org/3/movie/${this.state.showID}/videos?api_key=${apiKey}&language=en-US`;
+        const url = `https://api.themoviedb.org/3/tv/${this.state.showID}/videos?api_key=${apiKey}&language=en-US`;
 
         fetch(url)
         .then(response => response.json())
@@ -82,7 +80,7 @@ class MovieCard extends Component {
 
     fetchProviders() {
 
-        const url = `https://api.themoviedb.org/3/movie/${this.state.showID}/watch/providers?api_key=${apiKey}`;
+        const url = `https://api.themoviedb.org/3/tv/${this.state.showID}/watch/providers?api_key=${apiKey}`;
 
         fetch(url)
         .then(response => response.json())
@@ -90,7 +88,6 @@ class MovieCard extends Component {
             providers: data.results['US']['buy'].map( eachProvider => `${eachProvider.provider_name}`)
         }))
     }
-
 
     render(){
         return(
@@ -106,12 +103,16 @@ class MovieCard extends Component {
                     <Card.Body>
                         
                         <Card.Title>
-                            {this.state.detailsData.title}
+                            {this.state.detailsData.name}
                         </Card.Title>
 
                         <Card.Text>
                             Rating: {this.state.detailsData.vote_average} out of 10
                         </Card.Text>
+
+                        {/* <Card.Text>
+                            Prod: {this.state.videos.join()}
+                        </Card.Text> */}
                         
                         <Button variant="info">More Details</Button>
                     </Card.Body>
@@ -122,4 +123,4 @@ class MovieCard extends Component {
     }
 }
 
-export default MovieCard
+export default TVShowCard

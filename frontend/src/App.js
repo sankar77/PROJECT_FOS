@@ -6,6 +6,7 @@ import {Container, Row, Col} from "react-bootstrap";
 import NavBar from './components/NavBar';
 import AboutUs from './components/AboutUs';
 import MovieCard from './components/MovieCard';
+import TVShowCard from './components/TVShowCard';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <Container className="justify-content-around" style={{display:'flex'}}>
         <Row>
           <Col><MovieCard id="862" movie="true"/></Col>
-          <Col><MovieCard id="1402" movie="false"/></Col>
+          <Col><TVShowCard id="1402" movie="false"/></Col>
           <Col><MovieCard id="862" movie="true"/></Col>
         </Row>
       </Container>
