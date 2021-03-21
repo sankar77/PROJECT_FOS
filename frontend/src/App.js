@@ -6,7 +6,7 @@ import NavBar from './components/NavBar';
 import AboutUs from './components/AboutUs';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
-import PrivateRoute from "./components/PrivateRoute";
+import ForgotPassword from "./components/ForgotPassword";
 import { AuthProvider } from './contexts/AuthProvider';
 
 function App() {
@@ -16,9 +16,10 @@ function App() {
                 <div className="container">
                     <NavBar/>
                     <br/>
-                    <PrivateRoute path="/aboutuspage" exact component={AboutUs}/>
-                    <PrivateRoute path="/signup" exact component={SignUp}/>
-                    <PrivateRoute path="/login" exact component={Login}/>
+                    <Route path="/aboutuspage" exact component={AboutUs}/>
+                    <Route path="/signup" exact component={SignUp}/>
+                    <Route path="/login" exact component={Login}/>
+                    <Route path="/forgot-password" exact component={ForgotPassword}/>
                 </div>
             </Router>
         </AuthProvider>
