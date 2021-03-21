@@ -12,7 +12,7 @@ const NavBar = () => {
     }
 
     const {user, logOut} = useAuth();
-    const {error, setError} = useState('');
+    const [error, setError] = useState('');
     const history = useHistory();
 
     const customToggle = React.forwardRef(({children, onClick}, ref) => (

@@ -3,29 +3,29 @@ import { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthProvider";
 import { Link, useHistory } from "react-router-dom";
 
-const Login = () => {
+const ForgotPassword = () => {
 
     const emailRef = useRef();
-    const passwordRef = useRef();
-    const {logIn, user} = useAuth();
+    const {resetPassword} = useAuth();
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
 
 
-    async function logInHandler(event) {
+    async function resetPasswordHandler(event) {
         event.preventDefault();
 
         try {
+            setSuccess('');
             setError('');
             setLoading(true);
-            await logIn(
-                emailRef.current.value,
-                passwordRef.current.value
+            await resetPassword(
+                emailRef.current.value
             );
-            history.push('/');
+            setSuccess('Check your email to reset password');
         } catch {
-            setError('Failed to sign in.');
+            setError('Failed to reset password.');
         }
 
         setLoading(false);
@@ -36,25 +36,16 @@ const Login = () => {
             <div style={{display: 'flex', justifyContent:'center', alignContent:'center'}}>
                 <Card style={{minWidth: 600}}>
                     <Card.Body>
-                        <h1 style={{textAlign: 'center'}}>Log In</h1>
+                        <h1 style={{textAlign: 'center'}}>Reset Password</h1>
                         {error && <Alert variant='danger'>{error}</Alert>}
-                        <Form onSubmit={logInHandler}>
+                        {success && <Alert variant='success'>{success}</Alert>}
+                        <Form onSubmit={resetPasswordHandler}>
                             <Form.Group id='email'>
                                 <Form.Label>Email Address</Form.Label>
                                 <Form.Control
                                     type='email'
                                     placeholder='Enter email'
                                     ref={emailRef}
-                                    required
-                                />
-                            </Form.Group>
-
-                            <Form.Group id='password'>
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control
-                                    type='password'
-                                    placeholder='Password'
-                                    ref={passwordRef}
                                     required
                                 />
                             </Form.Group>
@@ -68,7 +59,7 @@ const Login = () => {
                             />
                         </Form>
                         <div className='w-100 text-center mt-4'>
-                            <Link to='/forgot-password'>Forgot Password</Link>
+                            <Link to='/login'>Login</Link>
                         </div>
                     </Card.Body>
                 </Card>
@@ -80,4 +71,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default ForgotPassword;
