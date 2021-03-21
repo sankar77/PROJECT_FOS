@@ -18,7 +18,8 @@ class TVShowCard extends Component {
             crew: [],
             reviews: [],
             videos: [],
-            providers: []
+            providers: [],
+            seasons: []
         }
     }
 
@@ -40,7 +41,15 @@ class TVShowCard extends Component {
             this.setState({
                 detailsData: data,
                 genres: data.genres.map( genreInfo => genreInfo.name ),
-                productionCompanies: data.production_companies.map( prodInfo => prodInfo.name )
+                productionCompanies: data.production_companies.map( prodInfo => prodInfo.name ),
+                seasons: data.seasons.filter( seasonInfo => seasonInfo.season_number > 0 )
+                                    .map(seasonInfo => [
+                                        `${seasonInfo.air_date}`,
+                                        `${seasonInfo.episode_count}`,
+                                        `${seasonInfo.name}`,
+                                        `${seasonInfo.overview}`,
+                                        `${seasonInfo.poster_path}`
+                                    ])
             }));
         
     }
@@ -111,7 +120,7 @@ class TVShowCard extends Component {
                         </Card.Text>
 
                         {/* <Card.Text>
-                            Prod: {this.state.videos.join()}
+                            Prod: {this.state.seasons.join()}
                         </Card.Text> */}
                         
                         <Button variant="info">More Details</Button>

@@ -18,9 +18,10 @@ function App() {
 
       <Container className="justify-content-around" style={{display:'flex'}}>
         <Row>
-          <Col><MovieCard id="862" movie="true"/></Col>
-          <Col><TVShowCard id="1402" movie="false"/></Col>
-          <Col><MovieCard id="862" movie="true"/></Col>
+          <Col><MovieCard id="862"/></Col>
+          <Col><TVShowCard id="1402"/></Col>
+          <Col><MovieCard id="862"/></Col>
+          <Col><TVShowCard id="1401"/></Col>
         </Row>
       </Container>
     </>
