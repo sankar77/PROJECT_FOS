@@ -20,7 +20,7 @@ function App() {
         <Row>
           <Col><MovieCard id="862"/></Col>
           <Col><TVShowCard id="1402"/></Col>
-          <Col><MovieCard id="862"/></Col>
+          <Col><MovieCard id="1402"/></Col>
           <Col><TVShowCard id="1401"/></Col>
         </Row>
       </Container>
