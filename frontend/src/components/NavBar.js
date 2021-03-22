@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useAuth } from "../contexts/AuthProvider";
 import { Dropdown } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const NavBar = () => {
 
@@ -66,23 +66,29 @@ const NavBar = () => {
                     </form>
                     <ul className="navbar-nav mr-auto">
                         {user != null
-                            ?
-                            <>
+                            ? <>
                                 <li className="nav-item">
                                     <Dropdown>
                                         <Dropdown.Toggle as={customToggle} id="dropdown-custom-components">
                                         </Dropdown.Toggle>
 
                                         <Dropdown.Menu>
-                                            <Dropdown.Item eventKey="1">Profile</Dropdown.Item>
-                                            <Dropdown.Item eventKey="2" onClick={signOutHandler}>Sign Out</Dropdown.Item>
+                                            <Dropdown.Item eventKey="1">
+                                                <Link to='/profile'>Profile</Link>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item eventKey="2">
+                                                <Link to='/account'>Account</Link>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item eventKey="3" onClick={signOutHandler}>
+                                                Sign Out
+                                            </Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </li>
                             </>
                             : <>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/login">Login</a>
+                                    <a className="nav-link" href="/login">Log In</a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" href="/signup">Sign Up</a>
