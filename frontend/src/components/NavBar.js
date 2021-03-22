@@ -34,11 +34,11 @@ const NavBar = () => {
         </a>
     ));
 
-    async function signOutHandler(event) {
+    const signOutHandler = (event) => {
         setError('');
         try {
-            await logOut();
-            history.pushState('/');
+            logOut();
+            history.push('/');
         } catch {
             setError('Failed to sign out.');
         }

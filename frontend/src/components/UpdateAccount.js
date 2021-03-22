@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
-import { Alert, Button, Card, Form, Overlay } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Alert, Button, Card, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthProvider";
+import Center from "./Center";
 
 const UpdateAccount = () => {
     const [error, setError] = useState('');
@@ -11,7 +12,6 @@ const UpdateAccount = () => {
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
     const {user, updatePassword, updateEmail} = useAuth();
-    const history = useHistory();
 
     async function updateAccountHandler(event) {
         event.preventDefault();
@@ -33,7 +33,6 @@ const UpdateAccount = () => {
         }
 
         Promise.all(promise).then(() => {
-           // history.push('/')
             setSuccess('Account successfully updated.');
         }).catch(() => {
             setError('Failed to update account information.');
@@ -44,7 +43,7 @@ const UpdateAccount = () => {
 
     return (
         <>
-            <div style={{display: 'flex', justifyContent:'center', alignContent:'center'}}>
+            <Center>
                 <Card style={{minWidth: 600}}>
                     <Card.Body>
                         <h1 style={{textAlign: 'center'}}>Update Account</h1>
@@ -90,7 +89,7 @@ const UpdateAccount = () => {
                         </Form>
                     </Card.Body>
                 </Card>
-            </div>
+            </Center>
             <div className='w-100 text-center mt-2'>
                 <Link to='/account'>Go Back</Link>
             </div>

@@ -27,6 +27,14 @@ export const AuthProvider = ({children}) => {
         return firebase.auth().sendPasswordResetEmail(email);
     };
 
+    const updateEmail = (email) => {
+        return user.updateEmail(email);
+    };
+
+    const updatePassword = (password) => {
+        return user.updatePassword(password);
+    };
+
     useEffect(() => {
         const unsubscribe = firebase.auth().onAuthStateChanged(user => {
             setUser(user);
@@ -41,7 +49,9 @@ export const AuthProvider = ({children}) => {
         signUp,
         logIn,
         logOut,
-        resetPassword
+        resetPassword,
+        updateEmail,
+        updatePassword
     };
 
     return (

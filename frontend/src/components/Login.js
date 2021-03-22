@@ -2,6 +2,7 @@ import { Form, Button, Card, Alert } from 'react-bootstrap'
 import { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthProvider";
 import { Link, useHistory } from "react-router-dom";
+import Center from "./Center";
 
 const Login = () => {
 
@@ -33,7 +34,7 @@ const Login = () => {
 
     return (
         <>
-            <div style={{display: 'flex', justifyContent:'center', alignContent:'center'}}>
+            <Center>
                 <Card style={{minWidth: 600}}>
                     <Card.Body>
                         <h1 style={{textAlign: 'center'}}>Log In</h1>
@@ -72,7 +73,7 @@ const Login = () => {
                         </div>
                     </Card.Body>
                 </Card>
-            </div>
+            </Center>
             <div className='w-100 text-center mt-2'>
                 Don't have an account? <Link to='/signup'>Sign Up</Link>
             </div>
