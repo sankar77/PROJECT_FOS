@@ -2,6 +2,8 @@ import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { Multiselect } from 'multiselect-react-dropdown';
 // npm install multiselect-react-dropdown
 import React, { Component, useRef, useState, useEffect } from "react";
+import { db } from "../firebase";
+import { useAuth } from "../contexts/AuthProvider";
 
 export default function Preference(){
 
@@ -13,16 +15,17 @@ export default function Preference(){
 
     const actorRef = useRef();
     const directorRef = useRef();
-    const genreRef = useRef();
     const movieRef = useRef();
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
-    var actorSelections = [];
-    var directorSelections = [];
-    var movieSelections = [];
-    var genreSelection = {};
-    
+    let actorSelections = [];
+    let directorSelections = [];
+    let movieSelections = [];
+    let genreSelection = {};
+
+    const {user} = useAuth();
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -34,6 +37,15 @@ export default function Preference(){
 
         movieSelections = movieRef.current.value.split(",");
         movieSelections = movieSelections.map(s => s.trim());
+
+        const genreSelections = genreSelection.map(genre => genre['name']);
+
+        db.collection('preferences').doc(user.uid).set({
+            actorSelections,
+            directorSelections,
+            genreSelections,
+            movieSelections,
+        });
     };
 
     const handleSkip = () => {
@@ -44,12 +56,12 @@ export default function Preference(){
     };
 
     const genreList = (selectedList, selectedItem) => {
-        genreSelection = JSON.stringify(selectedList);
+        genreSelection = selectedList;
     };  
 
     return (
         <Card>
-            <h3>Set your account preferences</h3>
+            <h3 className="ml-4 mt-4">Set your account preferences</h3>
             <Card.Body>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group id = "actors">
@@ -65,7 +77,6 @@ export default function Preference(){
                         <Multiselect
                             options={genres.options} // Options to display in the dropdown
                             displayValue="name" // Property name to display in the dropdown options
-                            ref={genreRef}
                             onSelect={genreList}
                         />
                     </Form.Group>
