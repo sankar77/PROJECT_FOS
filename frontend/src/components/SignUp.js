@@ -9,7 +9,7 @@ const SignUp = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
-    const {signUp, user} = useAuth();
+    const {signUp} = useAuth();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
@@ -29,7 +29,7 @@ const SignUp = () => {
                 emailRef.current.value,
                 passwordRef.current.value
             );
-            history.push('/');
+            history.push('/pref');
         } catch {
             setError('Failed to create an account.');
         }

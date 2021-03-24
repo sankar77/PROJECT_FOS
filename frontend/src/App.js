@@ -6,10 +6,12 @@ import NavBar from './components/NavBar';
 import AboutUs from './components/AboutUs';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
+
 import ForgotPassword from './components/ForgotPassword';
 import Profile from './components/Profile'
 import Account from "./components/Account";
 import UpdateAccount from "./components/UpdateAccount";
+import Preference from './components/Preference';
 import { AuthProvider } from './contexts/AuthProvider';
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
                     <Route path="/profile" exact component={Profile}/>
                     <Route path="/account" exact component={Account}/>
                     <Route path="/update-account" exact component={UpdateAccount}/>
+                    <Route path="/pref" exact component={Preference}/>
+
                 </div>
             </Router>
         </AuthProvider>
