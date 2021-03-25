@@ -2,13 +2,28 @@ import React, { useState } from 'react'
 import { useAuth } from "../contexts/AuthProvider";
 import { Dropdown } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
+import axios from 'axios'
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from "@material-ui/core/CardMedia";
+// import {useHistory} from "react-router";
+// eslint-disable-next-line
+const apiKey = "42d845ec0caf10ecc9f34f1648197aee"
+const imageBase = "http://image.tmdb.org/t/p/w300";
+var result = [];
 
 const NavBar = () => {
-
+    // const [data,getData] = useState('');
+    // const history = useHistory();
     const onClick = (event) => {
         event.preventDefault();
         const val = document.getElementById('searchValue').value;
-        alert(`The Movie/TV Show search is: ${val}`);
+        
+        history.push('/search',{data:val});
+        // var res = [];
+        // var data;
+        
+        
     }
 
     const {user, logOut} = useAuth();
@@ -58,11 +73,11 @@ const NavBar = () => {
                     </ul>
                     <form className="form-inline my-2 my-lg-0 col-6">
                         <label htmlFor="searchValue"></label>
-                        <input className="form-control mr-sm-2 col-8" type="search" placeholder="Search Movies/TV Shows"
-                               aria-label="Search" id="searchValue"/>
-                        <button className="btn btn-outline-primary my-2 my-sm-0" type="submit"
-                                onClick={onClick}>Search
-                        </button>
+                    <input className="form-control mr-sm-2 col-8" type="search" placeholder="Search Movies/TV Shows" aria-label="Search" id="searchValue"/>
+                    <button className="btn btn-outline-primary my-2 my-sm-0" type="submit" onClick={onClick}>Search</button>
+                    <ul>
+                        {result}
+                    </ul>
                     </form>
                     <ul className="navbar-nav mr-auto">
                         {user != null

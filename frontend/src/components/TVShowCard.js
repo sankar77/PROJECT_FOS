@@ -97,9 +97,10 @@ class TVShowCard extends Component {
 
         fetch(url)
         .then(response => response.json())
-        .then(data => this.setState({
-            providers: data.results['US']['buy'].map( eachProvider => `${eachProvider.provider_name}`)
-        }))
+        // .then(data => this.setState({
+        //     providers: data.results['US']['buy'].map( eachProvider => `${eachProvider.provider_name}`)
+        .then(data=>console.log(data)
+        )
     }
 
     castPopover(){
