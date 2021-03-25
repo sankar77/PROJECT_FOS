@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Button, Card, OverlayTrigger, Popover, Container, Row } from "react-bootstrap";
+import { Button, Card, OverlayTrigger, Popover, Container, Row, CardGroup } from "react-bootstrap";
 
 const apiKey="42d845ec0caf10ecc9f34f1648197aee";
 const imageBase = "http://image.tmdb.org/t/p/w185";
@@ -90,9 +90,10 @@ class MovieCard extends Component {
 
         fetch(url)
         .then(response => response.json())
-        .then(data => this.setState({
-            providers: data.results['US']['buy'].map( eachProvider => `${eachProvider.provider_name}`)
-        }))
+        // .then(data => this.setState({
+        //     providers: data.results['US']['buy'].map( eachProvider => `${eachProvider.provider_name}`)
+        .then(data=>console.log(data)
+        )
     }
 
     castPopover(){
@@ -193,7 +194,7 @@ class MovieCard extends Component {
     render(){
         return(
             <div>
-                <Card style={{ width: '18em'}} border="success">
+                <Card style={{ width: '15em',marginLeft:10,marginTop:10}} border="success">
                     
                     <Card.Img
                         style={{ height: '12em'}} 
