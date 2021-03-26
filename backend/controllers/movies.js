@@ -31,6 +31,18 @@ const fetchDetails = (movieID) => {
     });
 }
 
+const fetchCastAndCrew = (movieID) => {
+
+    const url = `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=${apiKey}&language=en-US`;
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        movieState.cast = data.cast.map( eachCast => `${eachCast.name}`);
+        movieState.crew = data.crew.map( eachCrew => `${eachCrew.name} [${eachCrew.department}]`);
+    });
+}
+
 
 const fetchMovie = (req, res) => {
 
@@ -38,7 +50,7 @@ const fetchMovie = (req, res) => {
     movieState.showID = movieID;
 
     fetchDetails(movieID);
-    // fetchCastAndCrew(movieID);
+    fetchCastAndCrew(movieID);
     // fetchReviews(movieID);
     // fetchVideos(movieID);
     // fetchProviders(movieID);
