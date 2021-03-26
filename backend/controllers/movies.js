@@ -1,3 +1,4 @@
+const { response } = require('express');
 const fetch = require('node-fetch');
 
 const apiKey="42d845ec0caf10ecc9f34f1648197aee";
@@ -43,6 +44,42 @@ const fetchCastAndCrew = (movieID) => {
     });
 }
 
+const fetchReviews = (movieID) => {
+
+    const url = `https://api.themoviedb.org/3/movie/${movieID}/reviews?api_key=${apiKey}`;
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        movieState.reviews = data.results.map( eachReviewInfo => `${eachReviewInfo.content} - ${eachReviewInfo.author}` );
+    })
+
+}
+
+const fetchVideos = (movieID) => {
+
+    const url = `https://api.themoviedb.org/3/movie/${movieID}/videos?api_key=${apiKey}&language=en-US`;
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        movieState.videos = data.results.map( eachVideoInfo => [`${videoBase}${eachVideoInfo.key}`, `${eachVideoInfo.type}`] );
+    })
+
+}
+
+const fetchProviders = (movieID) => {
+
+    const url = `https://api.themoviedb.org/3/movie/${movieID}/watch/providers?api_key=${apiKey}`;
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        movieState.providers = data.results['US']['buy'].map( eachProvider => `${eachProvider.provider_name}`);
+    })
+
+}
+
 
 const fetchMovie = (req, res) => {
 
@@ -51,9 +88,9 @@ const fetchMovie = (req, res) => {
 
     fetchDetails(movieID);
     fetchCastAndCrew(movieID);
-    // fetchReviews(movieID);
-    // fetchVideos(movieID);
-    // fetchProviders(movieID);
+    fetchReviews(movieID);
+    fetchVideos(movieID);
+    fetchProviders(movieID);
     
     res.send(movieState)
 }
