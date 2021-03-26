@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Button, Card, OverlayTrigger, Popover, Container, Row, CardGroup } from "react-bootstrap";
+import { Button, Card, OverlayTrigger, Popover, Container, Row } from "react-bootstrap";
 
 const apiKey="42d845ec0caf10ecc9f34f1648197aee";
 const imageBase = "http://image.tmdb.org/t/p/w185";
