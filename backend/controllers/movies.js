@@ -26,11 +26,33 @@ const fetchDetails = (movieID) => {
         fetch(url)
         .then(response => response.json())
         .then( (data) => {
-                var genres = data.genres.map( genreInfo => genreInfo.name );
-                var productionCompanies = data.production_companies.map( prodInfo => prodInfo.name );
-                var summary = data.overview;
+                
+                try {
+                    var detailsData = data;
+                } catch (error) {
+                    var detailsData = {}
+                }
+
+                try {
+                    var genres = data.genres.map( genreInfo => genreInfo.name );
+                } catch (error) {
+                    var genres = ["Currently No Info Available on Genres..."];
+                }
+                
+                try {
+                    var productionCompanies = data.production_companies.map( prodInfo => prodInfo.name );
+                } catch (error) {
+                    var productionCompanies = ["Currently No Info Available on Production Companies..."];
+                }
+
+                try {
+                    var summary = data.overview;  
+                } catch (error) {
+                    var summary = "No Summary Available for this Movie..."
+                }
+
                 resolve({
-                    'detailsData': data,
+                    'detailsData': detailsData,
                     'genres': genres,
                     'productionCompanies': productionCompanies,
                     'summary': summary
@@ -52,8 +74,21 @@ const fetchCastAndCrew = (movieID) => {
         fetch(url)
         .then(response => response.json())
         .then( (data) => {
-            var cast = data.cast.map( eachCast => `${eachCast.name}`);
-            var crew = data.crew.map( eachCrew => `${eachCrew.name} [${eachCrew.department}]`);
+            
+            try {
+                var cast = data.cast.map( eachCast => `${eachCast.name}`);
+            }
+            catch(error) {
+                var cast = ["No Cast Information Available!"]
+            }
+
+            try {
+                var crew = data.crew.map( eachCrew => `${eachCrew.name} [${eachCrew.department}]`);
+            }
+            catch(error) {
+                var crew = ["No Crew Information Available!"]
+            }
+
             resolve({
                 'cast': cast,
                 'crew': crew
@@ -74,7 +109,12 @@ const fetchReviews = (movieID) => {
         fetch(url)
         .then(response => response.json())
         .then( (data) => {
-                var reviews = data.results.map( eachReviewInfo => `${eachReviewInfo.content} - ${eachReviewInfo.author}` );
+                try {
+                    var reviews = data.results.map( eachReviewInfo => `${eachReviewInfo.content} - ${eachReviewInfo.author}` );
+                }
+                catch(error) {
+                    var reviews = ["There aren't any reviews for you!"]
+                }
                 resolve(reviews);
             },
             (error) => {
@@ -93,7 +133,12 @@ const fetchVideos = (movieID) => {
         fetch(url)
         .then(response => response.json())
         .then( (data) => {
-                var videos = data.results.map( eachVideoInfo => [`${videoBase}${eachVideoInfo.key}`, `${eachVideoInfo.type}`] );
+                try {
+                    var videos = data.results.map( eachVideoInfo => [`${videoBase}${eachVideoInfo.key}`, `${eachVideoInfo.type}`] );
+                }
+                catch(error) {
+                    var videos = ["Videos Currently Unavailable"]
+                }
                 resolve(videos);
             },
             (error) => {
@@ -113,7 +158,12 @@ const fetchProviders = (movieID) => {
         fetch(url)
         .then(response => response.json())
         .then((data) => {
-                var providers = data.results['US']['buy'].map( eachProvider => `${eachProvider.provider_name}`);
+                try{
+                    var providers = data.results['US']['buy'].map( eachProvider => `${eachProvider.provider_name}`);
+                }
+                catch(error){
+                    var providers = ["Information Not Available"]
+                }
                 resolve(providers);
             },
             (error) => {
