@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const config = require('./config');
 
 const movieRoutes = require('./routes/movies');
+const tvShowRoutes = require('./routes/tvShows');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.listen(config.port, () => {
 });
 
 app.use('/movies', movieRoutes.routes);
+app.use('/tvshows', tvShowRoutes.routes);
 
 app.get('/', (req,res) => {
     res.send("Hello World!")
