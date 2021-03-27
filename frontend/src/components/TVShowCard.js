@@ -182,7 +182,7 @@ class TVShowCard extends Component {
                     <ul className="list-group flush">
                         {this.state.seasons.map( seasonItem => (
                             <li className="list-group-item">
-                                <OverlayTrigger trigger="click" placement="auto" overlay={this.seasonItemPopover(seasonItem)}>
+                                <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.seasonItemPopover(seasonItem)}>
                                     <Button variant="link">{seasonItem[2]}</Button>
                                 </OverlayTrigger>
                             </li>
@@ -205,27 +205,27 @@ class TVShowCard extends Component {
                     
                     <Container>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.seasonsPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.seasonsPopover()}>
                                 <Button variant="link">Season Details</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.castPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.castPopover()}>
                                 <Button variant="link">Cast Details</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.crewPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.crewPopover()}>
                                 <Button variant="link">Crew Details</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.reviewsPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.reviewsPopover()}>
                                 <Button variant="link">Reviews</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.videosPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.videosPopover()}>
                                 <Button variant="link">Related Videos</Button>
                             </OverlayTrigger>
                         </Row>

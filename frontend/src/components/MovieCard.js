@@ -166,22 +166,22 @@ class MovieCard extends Component {
                     
                     <Container>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.castPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.castPopover()}>
                                 <Button variant="link">Cast Details</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.crewPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.crewPopover()}>
                                 <Button variant="link">Crew Details</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.reviewsPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.reviewsPopover()}>
                                 <Button variant="link">Reviews</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.videosPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.videosPopover()}>
                                 <Button variant="link">Related Videos</Button>
                             </OverlayTrigger>
                         </Row>
@@ -212,7 +212,7 @@ class MovieCard extends Component {
                             Rating: {this.state.detailsData.vote_average} out of 10
                         </Card.Text>
                         
-                        <OverlayTrigger trigger="click" placement="auto" overlay = {this.popover()}>
+                        <OverlayTrigger trigger="click" rootClose placement="auto" overlay = {this.popover()}>
                             <Button variant="info">More Details</Button>
                         </OverlayTrigger>
                     </Card.Body>
