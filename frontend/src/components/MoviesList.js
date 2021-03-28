@@ -42,15 +42,6 @@ class MoviesList extends React.Component{
             latestMoviesData: tempArray
         })
 
-        axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=5`)
-        .then((response)=>{
-            this.setState({
-                latestMovies:response.data.results
-            })
-        })
-        .catch((error)=>{
-            console.log(error);
-        })
 
         axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`)
         .then((response)=>{
@@ -123,28 +114,25 @@ class MoviesList extends React.Component{
     showMovies(){
         var result = [];
         let i = 0;
-        
-        for(;i<this.state.latestMovies.length;i++){
-            var movie = this.state.latestMovies[i];
+        for(;i<this.state.latestMoviesData.length;i++){
+            var movie = this.state.latestMoviesData[i];
             var movieData = this.state.latestMoviesData[i];
-
-            if(movie.original_language!=='en'){
+            if(movie.detailsData.original_title[0]==='B'&&movie.detailsData.original_title[1]==='o'){
                 continue;
             }
-            if(movie.original_title[0]==='B'&&movie.original_title[1]==='o'){
+            if(movie.detailsData.original_language!=="en"){
                 continue;
             }
-
             result.splice(0,0,
                <div style = {{display:'inline-block'}}>
                 <MovieCard 
-                    id ={movie.id} 
+                    id ={movie.showID} 
                     data = {movieData}>
               </MovieCard>
               </div>
               )   
         }
-        
+        console.log(result)
         return result;
     }
     
