@@ -1,11 +1,14 @@
-import React from 'react';
 import axios from 'axios';
-
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import MovieCard from './MovieCard';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
+import './movies.css';
+import PacmanLoader from "react-spinners/PacmanLoader";
+import  '../App.css';
+
 
 const apiKey = "42d845ec0caf10ecc9f34f1648197aee"
 var filter = false;
@@ -21,12 +24,16 @@ class MoviesList extends React.Component{
             filterValue:'',
             filteredMovies:[],
             filteredMoviesData: [],
-            genreList:[]
+            genreList:[],
+            loading:true
         }
     }
 
     async componentDidMount(){
-
+            setTimeout(() => {
+                this.setState({loading:false})
+                        }, 6000);
+        
         const baseURL = `https://movies-tmdb-api.herokuapp.com/movies/`;
 
         const latestMoviesData = axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=5`);
@@ -85,7 +92,7 @@ class MoviesList extends React.Component{
     
     showFilteredMovies(){
         
-        console.log(this.state.filterValue);
+        // console.log(this.state.filterValue);
         var i = 0;
         var result = [];
         for(;i<this.state.filteredMovies.length;i++){
@@ -112,6 +119,7 @@ class MoviesList extends React.Component{
     }
 
     showMovies(){
+
         var result = [];
         let i = 0;
         for(;i<this.state.latestMoviesData.length;i++){
@@ -132,43 +140,56 @@ class MoviesList extends React.Component{
               </div>
               )   
         }
-        console.log(result)
+        // console.log(result)
         return result;
     }
     
     render(){
+        if(this.state.loading){
+            return(
+            <div className="App1">
+            <PacmanLoader 
+                    size={30} 
+                    color={"#000000"} 
+                    loading={this.state.loading} />
+            </div>
+            )
+        }
+        else{
         return(
             <div>
-                 <Button 
-                    variant = "contained" 
-                    color = "primary" 
-                    style = {{marginLeft:20}} 
-                    onClick = {()=>{this.props.history.push('/today')}}
+                    <Button 
+                       variant = "contained" 
+                       color = "primary" 
+                       style = {{marginLeft:20}} 
+                       onClick = {()=>{this.props.history.push('/today')}}
+                       >
+                           GET TV Shows Airing Today
+                       </Button>
+                    <FormControl 
+                       style = {{marginLeft:600}}
                     >
-                        GET TV Shows Airing Today
-                    </Button>
-                 <FormControl 
-                    style = {{marginLeft:600}}
-                 >
-                <InputLabel 
-                    htmlFor="age-native-simple"
-                >
-                    Genre
-                </InputLabel>
-                <Select native value={this.state.age} onChange={this.handleChange} inputProps={{name: 'age',id: 'age-native-simple',}}>
-                    <option aria-label="None" value="" />
-                    <option value={28}>Action</option>
-                    <option value={12}>Adventure</option>
-                    <option value={16}>Animation</option>
-                </Select>
-                
-            </FormControl>
+                   <InputLabel 
+                       htmlFor="age-native-simple"
+                   >
+                       Genre
+                   </InputLabel>
+                   <Select native value={this.state.age} onChange={this.handleChange} inputProps={{name: 'age',id: 'age-native-simple',}}>
+                       <option aria-label="None" value="" />
+                       <option value={28}>Action</option>
+                       <option value={12}>Adventure</option>
+                       <option value={16}>Animation</option>
+                   </Select>
+                   
+               </FormControl>
+   
+                   <ul>
+                       {filter ? this.showFilteredMovies():this.showMovies()}
+                   </ul>
 
-                <ul>
-                    {filter ? this.showFilteredMovies():this.showMovies()}
-                </ul>
             </div>
         )
+        }
     }
 }
 export default MoviesList;
