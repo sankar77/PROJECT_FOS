@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import { Button, Card, OverlayTrigger, Popover, Container, Row } from "react-bootstrap";
 
-const apiKey="42d845ec0caf10ecc9f34f1648197aee";
 const imageBase = "http://image.tmdb.org/t/p/w185";
-const videoBase = "https://www.youtube.com/watch?v=";
+
 const scrollable = {
     height: '40rem',
     overflow: 'auto'
@@ -15,85 +14,19 @@ class MovieCard extends Component {
         super();
         this.state = {
             showID: props.id,
-            detailsData: {},
-            genres: [],
-            productionCompanies: [],
-            cast: [],
-            crew: [],
-            reviews: [],
-            videos: [],
-            providers: [],
-            summary: ""
+            detailsData: props.data.detailsData,
+            genres: props.data.genres,
+            productionCompanies: props.data.productionCompanies,
+            cast: props.data.cast,
+            crew: props.data.crew,
+            reviews: props.data.reviews,
+            videos: props.data.videos,
+            providers: props.data.providers,
+            summary: props.data.summary
         }
     }
 
     componentDidMount(){
-        this.fetchDetails();
-        this.fetchCastAndCrew();
-        this.fetchReviews();
-        this.fetchVideos();
-        this.fetchProviders();
-    }
-
-    fetchDetails(){
-
-        const url = `https://api.themoviedb.org/3/movie/${this.state.showID}?api_key=${apiKey}&language=en-US&external_source=imdb_id`;
-        
-        fetch(url)
-        .then(response => response.json())
-        .then(data => 
-            this.setState({
-                detailsData: data,
-                genres: data.genres.map( genreInfo => genreInfo.name ),
-                productionCompanies: data.production_companies.map( prodInfo => prodInfo.name ),
-                summary: data.overview
-            }));
-        
-    }
-
-    fetchCastAndCrew() {
-        const url = `https://api.themoviedb.org/3/movie/${this.state.showID}/credits?api_key=${apiKey}&language=en-US`;
-
-        fetch(url)
-        .then(response => response.json())
-        .then(data => this.setState({
-            cast: data.cast.map( eachCast => `${eachCast.name}`),
-            crew: data.crew.map( eachCrew => `${eachCrew.name} [${eachCrew.department}]`)
-        }));
-    }
-
-    fetchReviews() {
-        
-        const url = `https://api.themoviedb.org/3/movie/${this.state.showID}/reviews?api_key=${apiKey}`;
-
-        fetch(url)
-        .then(response => response.json())
-        .then(data => this.setState({
-            reviews: data.results.map( eachReviewInfo => `${eachReviewInfo.content} - ${eachReviewInfo.author}` )
-        }));
-    }
-
-    fetchVideos() {
-
-        const url = `https://api.themoviedb.org/3/movie/${this.state.showID}/videos?api_key=${apiKey}&language=en-US`;
-
-        fetch(url)
-        .then(response => response.json())
-        .then(data => this.setState({
-            videos: data.results.map( eachVideoInfo => [`${videoBase}${eachVideoInfo.key}`, `${eachVideoInfo.type}`] )
-        }))
-    }
-
-    fetchProviders() {
-
-        const url = `https://api.themoviedb.org/3/movie/${this.state.showID}/watch/providers?api_key=${apiKey}`;
-
-        fetch(url)
-        .then(response => response.json())
-        // .then(data => this.setState({
-        //     providers: data.results['US']['buy'].map( eachProvider => `${eachProvider.provider_name}`)
-        .then(data=>console.log(data)
-        )
     }
 
     castPopover(){
@@ -166,22 +99,22 @@ class MovieCard extends Component {
                     
                     <Container>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.castPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.castPopover()}>
                                 <Button variant="link">Cast Details</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.crewPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.crewPopover()}>
                                 <Button variant="link">Crew Details</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.reviewsPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.reviewsPopover()}>
                                 <Button variant="link">Reviews</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.videosPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.videosPopover()}>
                                 <Button variant="link">Related Videos</Button>
                             </OverlayTrigger>
                         </Row>
@@ -212,7 +145,7 @@ class MovieCard extends Component {
                             Rating: {this.state.detailsData.vote_average} out of 10
                         </Card.Text>
                         
-                        <OverlayTrigger trigger="click" placement="auto" overlay = {this.popover()}>
+                        <OverlayTrigger trigger="click" rootClose placement="auto" overlay = {this.popover()}>
                             <Button variant="info">More Details</Button>
                         </OverlayTrigger>
                     </Card.Body>

@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import { Button, Card, OverlayTrigger, Popover, Container, Row } from "react-bootstrap";
 
-const apiKey="42d845ec0caf10ecc9f34f1648197aee";
 const imageBase = "http://image.tmdb.org/t/p/w185";
-const videoBase = "https://www.youtube.com/watch?v=";
+
 const scrollable = {
     height: '40rem',
     overflow: 'auto'
@@ -15,92 +14,19 @@ class TVShowCard extends Component {
         super();
         this.state = {
             showID: props.id,
-            detailsData: {},
-            genres: [],
-            productionCompanies: [],
-            cast: [],
-            crew: [],
-            reviews: [],
-            videos: [],
-            providers: [],
-            seasons: []
+            detailsData: props.data.detailsData,
+            genres: props.data.genres,
+            productionCompanies: props.data.productionCompanies,
+            cast: props.data.cast,
+            crew: props.data.crew,
+            reviews: props.data.reviews,
+            videos: props.data.videos,
+            providers: props.data.providers,
+            seasons: props.data.seasons
         }
     }
 
-    componentDidMount(){
-        this.fetchDetails();
-        this.fetchCastAndCrew();
-        this.fetchReviews();
-        this.fetchVideos();
-        this.fetchProviders();
-    }
-
-    fetchDetails(){
-
-        const url = `https://api.themoviedb.org/3/tv/${this.state.showID}?api_key=${apiKey}&language=en-US`;
-        
-        fetch(url)
-        .then(response => response.json())
-        .then(data => 
-            this.setState({
-                detailsData: data,
-                genres: data.genres.map( genreInfo => genreInfo.name ),
-                productionCompanies: data.production_companies.map( prodInfo => prodInfo.name ),
-                seasons: data.seasons.filter( seasonInfo => seasonInfo.season_number > 0 )
-                                    .map(seasonInfo => [
-                                        `${seasonInfo.air_date}`,
-                                        `${seasonInfo.episode_count}`,
-                                        `${seasonInfo.name}`,
-                                        `${seasonInfo.overview}`,
-                                        `${seasonInfo.poster_path}`
-                                    ])
-            }));
-        
-    }
-
-    fetchCastAndCrew() {
-        const url = `https://api.themoviedb.org/3/tv/${this.state.showID}/aggregate_credits?api_key=${apiKey}&language=en-US`;
-
-        fetch(url)
-        .then(response => response.json())
-        .then(data => this.setState({
-            cast: data.cast.map( eachCast => `${eachCast.name}`),
-            crew: data.crew.map( eachCrew => `${eachCrew.name} [${eachCrew.department}]`)
-        }));
-    }
-
-    fetchReviews() {
-        
-        const url = `https://api.themoviedb.org/3/tv/${this.state.showID}/reviews?api_key=${apiKey}&language=en-US`;
-
-        fetch(url)
-        .then(response => response.json())
-        .then(data => this.setState({
-            reviews: data.results.map( eachReviewInfo => `${eachReviewInfo.content} - ${eachReviewInfo.author}` )
-        }));
-    }
-
-    fetchVideos() {
-
-        const url = `https://api.themoviedb.org/3/tv/${this.state.showID}/videos?api_key=${apiKey}&language=en-US`;
-
-        fetch(url)
-        .then(response => response.json())
-        .then(data => this.setState({
-            videos: data.results.map( eachVideoInfo => [`${videoBase}${eachVideoInfo.key}`, `${eachVideoInfo.type}`] )
-        }))
-    }
-
-    fetchProviders() {
-
-        const url = `https://api.themoviedb.org/3/tv/${this.state.showID}/watch/providers?api_key=${apiKey}`;
-
-        fetch(url)
-        .then(response => response.json())
-        // .then(data => this.setState({
-        //     providers: data.results['US']['buy'].map( eachProvider => `${eachProvider.provider_name}`)
-        .then(data=>console.log(data)
-        )
+    async componentDidMount(){
     }
 
     castPopover(){
@@ -182,7 +108,7 @@ class TVShowCard extends Component {
                     <ul className="list-group flush">
                         {this.state.seasons.map( seasonItem => (
                             <li className="list-group-item">
-                                <OverlayTrigger trigger="click" placement="auto" overlay={this.seasonItemPopover(seasonItem)}>
+                                <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.seasonItemPopover(seasonItem)}>
                                     <Button variant="link">{seasonItem[2]}</Button>
                                 </OverlayTrigger>
                             </li>
@@ -205,27 +131,27 @@ class TVShowCard extends Component {
                     
                     <Container>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.seasonsPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.seasonsPopover()}>
                                 <Button variant="link">Season Details</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.castPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.castPopover()}>
                                 <Button variant="link">Cast Details</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.crewPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.crewPopover()}>
                                 <Button variant="link">Crew Details</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.reviewsPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.reviewsPopover()}>
                                 <Button variant="link">Reviews</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
-                            <OverlayTrigger trigger="click" placement="auto" overlay={this.videosPopover()}>
+                            <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.videosPopover()}>
                                 <Button variant="link">Related Videos</Button>
                             </OverlayTrigger>
                         </Row>
