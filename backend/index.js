@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-// const config = require('./config');
+const config = require('./config');
 
 const movieRoutes = require('./routes/movies');
 const tvShowRoutes = require('./routes/tvShows');
