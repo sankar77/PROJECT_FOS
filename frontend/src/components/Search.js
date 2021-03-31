@@ -20,7 +20,7 @@ class Search extends React.Component{
     async componentDidMount(){
         setTimeout(() => {
             this.setState({loading:false})
-                    }, 11000);
+                    }, 6000);
         const search_query = this.props.location.state.data;
         const baseURL = `https://movies-tmdb-api.herokuapp.com/movies/`;
         const baseURL1= `https://movies-tmdb-api.herokuapp.com/movieList/`;
