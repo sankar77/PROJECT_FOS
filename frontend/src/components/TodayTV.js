@@ -1,5 +1,6 @@
 import React from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 import TVShowCard from './TVShowCard';
 
@@ -10,35 +11,33 @@ class TodayTV extends React.Component{
         super(props);
         this.state = {
             tvShows:[],
-            tvShowsData: []
+            tvShowsData: [],
+            loading: true
         }
     }
     
     async componentDidMount(){
+        setTimeout(() => {
+            this.setState({loading:false})
+                    }, 6000);
         
         const baseURL = `https://movies-tmdb-api.herokuapp.com/tvshows/`;
+        const baseURL1 = `https://movies-tmdb-api.herokuapp.com/nowplaying/`;
 
-        const tvShowsData = axios.get(`https://api.themoviedb.org/3/tv/airing_today?api_key=${apiKey}&language=en-US&page=1`);
-        const tvShows = await tvShowsData.then(response => response.data.results);
-        const tvShowsURLs = tvShows.map(latestMovie => baseURL+latestMovie.id);
-        
+        const latestTvshowData = axios.get(baseURL1)
+        const latestTvshows = await latestTvshowData.then(response => response.data.tvshowList);
+        const latestTvURLs = latestTvshows.map(id => baseURL+id);
+
+        console.log("latest tv ursl",latestTvURLs);
+                    
         const tempArray = [];
-        for(let i = 0; i < tvShowsURLs.length; i++){
-            const currentTVData = await axios.get(tvShowsURLs[i]);
-            tempArray.push(currentTVData.data);
+        for(let i = 0; i < latestTvURLs.length; i++){
+            const currentTvData = await axios.get(latestTvURLs[i])
+            tempArray.push(currentTvData.data);
         }
+        console.log("temp array is ",tempArray)
         this.setState({
             tvShowsData: tempArray
-        })
-        
-        axios.get(`https://api.themoviedb.org/3/tv/airing_today?api_key=${apiKey}&language=en-US&page=1`)
-        .then((response)=>{
-            console.log(response.data.results);
-            this.setState({tvShows:response.data.results})
-
-        })
-        .catch((error)=>{
-            console.log(error);
         })
     }
 
@@ -46,16 +45,17 @@ class TodayTV extends React.Component{
     showtvShows(){
         var result = [];
         let i = 0;
-        for(;i<this.state.tvShows.length;i++){
-            var tvshow = this.state.tvShows[i];
+        console.log("after data os",this.state.tvShowsData);
+        for(;i<this.state.tvShowsData.length;i++){
+            var tvshow = this.state.tvShowsData[i];
             var tvShowData = this.state.tvShowsData[i];
-            if(tvshow.original_language!=='en'){
-                continue;
-            }
+            // if(tvshow.original_language!=='en'){
+            //     continue;
+            // }
             result.splice(0,0,
                <div style = {{display:'inline-block'}}>
                 <TVShowCard 
-                    id ={tvshow.id} 
+                    id ={tvshow.showID} 
                     data = {tvShowData}
                 >
               </TVShowCard>
@@ -64,10 +64,22 @@ class TodayTV extends React.Component{
               )
             
         }
-        
+        console.log("res is ",result);
         return result;
     }
     render(){
+        if(this.state.loading){
+            return(
+            <div className="App1">
+            <PacmanLoader 
+                    size={30} 
+                    color={"#000000"} 
+                    loading={this.state.loading} />
+            </div>
+            )
+        }
+        else {
+
         return(
             <div>
                 <ul>
@@ -75,6 +87,7 @@ class TodayTV extends React.Component{
                 </ul>
             </div>
         )
+        }
     }
 }
 export default TodayTV;

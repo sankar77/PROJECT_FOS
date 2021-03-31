@@ -1,7 +1,7 @@
-import './App.css';
+import  './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
+// import PacmanLoader from "react-spinners/PacmanLoader";
 import NavBar from './components/NavBar';
 import AboutUs from './components/AboutUs';
 import SignUp from './components/SignUp';
@@ -16,9 +16,11 @@ import MoviesList from './components/MoviesList';
 import Search from './components/Search';
 import { AuthProvider } from './contexts/AuthProvider';
 import TodayTV from './components/TodayTV';
+import Filter from './components/Filter';
 
 function App() {
     return (
+        <div>
         <AuthProvider>
             <Router>
                 <div className="container">
@@ -36,9 +38,13 @@ function App() {
                     <Route path = "/" exact component = {MoviesList}/>
                     <Route path = "/search" exact component = {Search}/>
                     <Route path = "/today" exact component = {TodayTV}/>
+                    <Route path="/filter" exact component={Filter}/>
                 </div>
             </Router>
         </AuthProvider>
+                
+        
+        </div>
     );
     }
 

@@ -26,6 +26,7 @@ const fetchDetails = (movieID) => {
         fetch(url)
         .then(response => response.json())
         .then( (data) => {
+            console.log(data)
                 
                 try {
                     var detailsData = data;

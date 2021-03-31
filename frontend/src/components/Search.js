@@ -1,88 +1,106 @@
-import React, { useState } from 'react'
+import React from 'react'
 import axios from 'axios'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from "@material-ui/core/CardMedia";
+import PacmanLoader from "react-spinners/PacmanLoader";
+import MovieCard from './MovieCard';
 
-const apiKey = "42d845ec0caf10ecc9f34f1648197aee"
+const apiKey = "42d845ec0caf10ecc9f34f1648197aee";
 const imageBase = "http://image.tmdb.org/t/p/w300";
 
 class Search extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            searchResults:[]
+            searchResults:[],
+            loading:true
         }
     }
-    componentDidMount(){
-        // const search_query = this.props.location.state.data;
-        console.log("Hey")
-        axios.get('https://api.themoviedb.org/3/search/movie?api_key='+apiKey+'&language=en-US&query='+'Avengers'+'&page=1&include_adult=false')
-        .then((response)=>{
-            this.setState({searchResults:response.data.results});
-            console.log(response.data.results);
-        })
-        .catch((error)=>{
-            console.log(error);
+    async componentDidMount(){
+        setTimeout(() => {
+            this.setState({loading:false})
+                    }, 6000);
+        const search_query = this.props.location.state.data;
+        const baseURL = `https://movies-tmdb-api.herokuapp.com/movies/`;
+        const baseURL1= `https://movies-tmdb-api.herokuapp.com/movieList/`;
+
+        const latestMoviesData = axios.get(baseURL1+search_query);
+        console.log("latest movies are",latestMoviesData);
+        const latestMovies = await latestMoviesData.then(response => response.data.movieList);
+        const latestMoviesURLs = latestMovies.map(id => baseURL+id);
+        console.log(latestMoviesURLs);
+        const tempArray = [];
+        for(let i = 0; i < latestMoviesURLs.length; i++){
+            // if(i>18){
+            //     break;
+            // }
+            const currentMovieData = await axios.get(latestMoviesURLs[i])
+            console.log(currentMovieData);
+            tempArray.push(currentMovieData.data);
+        }
+        console.log(tempArray)
+        this.setState({
+            searchResults: tempArray
         })
         
 }
-// collectSearchResults(){
-//     axios.get('https://api.themoviedb.org/3/search/movie?api_key='+apiKey+'&language=en-US&query='+'Avengers&page=1&include_adult=false')
-//         .then((response)=>{
-//             this.setState({searchResults:response.data.results});
-//             // console.log(response.data.results);
-//         })
-//         .catch((error)=>{
-//             console.log(error);
-//         })
-// }
+
 showSearchResults(){
         let i = 0;
         var result = [];
-        // console.log("In the function");
+        console.log(this.state.searchResults);
         for(;i<this.state.searchResults.length;i++){
             var movie = this.state.searchResults[i];
-            // console.log(movie);
+            console.log(movie);
             var imgAddr;
             if(movie.backdrop_path){
-                imgAddr = imageBase+movie.backdrop_path
+                imgAddr = imageBase+movie.detailsData.backdrop_path
             }
             else{
-                imgAddr = imageBase+movie.poster_path
+                imgAddr = imageBase+movie.detailsData.poster_path
             }
-            if(!movie.backdrop_path&&!movie.poster_path){
+            if(!movie.detailsData.backdrop_path&&!movie.detailsData.poster_path){
                 continue;
             }
-            if(movie.original_language!=='en'){
+            if(movie.detailsData.original_language!=='en'){
                 continue;
             }
             
             result.push(
-                <Card style = {{width:220,marginLeft:20,height:280,display:'inline-block',marginTop:0,border:"none",boxShadow:"none"}}>
-                <Card key={'page-' + i} style = {{width:220,marginLeft:0,height:250,display:'inline-block',marginTop:0}}>
-                 <CardMedia image={imgAddr} title="Sample Image" style = {{height:0,paddingTop:'125%',marginTop:0,marginBottom:0}}/>
-                
-              </Card>
-              <CardContent style = {{marginTop:-20}}>
-                  <p>{movie.original_title}</p>
-              </CardContent>
-              </Card>
+            <div style = {{display:'inline-block'}}>
+                <MovieCard 
+                    id ={movie.id} 
+                    data = {movie}>
+            </MovieCard>
+            </div>
               );
     }
     return result;
 }
 render(){
-    // const search_query = this.props.location.state.data;
-    // console.log(this.props.location.state);
-    
+    if(this.state.loading){
+        return(
+        <div className="App1">
+        <PacmanLoader 
+                size={30} 
+                color={"#000000"} 
+                loading={this.state.loading} />
+        </div>
+        )
+    }
+    else{
+
     return(
+
         <div>
             <ul>
                 {this.showSearchResults()}
+                
             </ul>
-        </div>
+            </div>
     )
+    }
 }
 }
 export default Search;
