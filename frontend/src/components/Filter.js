@@ -8,37 +8,24 @@ import InputLabel from '@material-ui/core/InputLabel';
 import './movies.css';
 import PacmanLoader from "react-spinners/PacmanLoader";
 import  '../App.css';
-import './Filter';
 
-const apiKey = "42d845ec0caf10ecc9f34f1648197aee"
-var filter = false;
-
-class MoviesList extends React.Component{
-    
+class Filter extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            latestMovies:[],
-            latestMoviesData:[],
-            filter:false,
-            filterValue:'',
-            filteredMovies:[],
-            filteredMoviesData: [],
-            genreList:[],
-            loading:true
+            latestMoviesData:[]
         }
     }
 
-    async componentDidMount(){
-            setTimeout(() => {
-                this.setState({loading:false})
-                        }, 6000);
-        
-        const baseURL = `https://movies-tmdb-api.herokuapp.com/movies/`;
-        const baseURL1 = `https://movies-tmdb-api.herokuapp.com/nowplaying/`;
+ async componentDidMount(){
+        if(window.sessionStorage.getItem('genre')){
+        const filter_value = window.sessionStorage.getItem('genre');
 
-        const latestMoviesData = axios.get(baseURL1)
-        const latestMovies = await latestMoviesData.then(response => response.data.movieList);
+        const baseURL = `https://movies-tmdb-api.herokuapp.com/movies/`;
+        const baseURL1 = `https://movies-tmdb-api.herokuapp.com/genres/`;
+
+        const latestMoviesData = axios.get(baseURL1+filter_value)
+        const latestMovies = await latestMoviesData.then(response => response.data.genreList);
         const latestMoviesURLs = latestMovies.map(id => baseURL+id);
                     
         const tempArray = [];
@@ -50,38 +37,72 @@ class MoviesList extends React.Component{
         this.setState({
             latestMoviesData: tempArray
         })
-        
+        }
+        else{
+        const filter_value = this.props.location.state.data;
+
+        const baseURL = `https://movies-tmdb-api.herokuapp.com/movies/`;
+        const baseURL1 = `https://movies-tmdb-api.herokuapp.com/genres/`;
+
+        const latestMoviesData = axios.get(baseURL1+filter_value)
+        const latestMovies = await latestMoviesData.then(response => response.data.genreList);
+        const latestMoviesURLs = latestMovies.map(id => baseURL+id);
+                    
+        const tempArray = [];
+        for(let i = 0; i < latestMoviesURLs.length; i++){
+            const currentMovieData = await axios.get(latestMoviesURLs[i])
+            tempArray.push(currentMovieData.data);
+        }
+        // console.log(tempArrays)
+        this.setState({
+            latestMoviesData: tempArray
+        })
     }
-    
+    }
+
     handleChange = async (event) => {
-        this.props.history.push('/filter',{data:event.target.value})
-      };
+        const filter_value = event.target.value;
+        window.sessionStorage.setItem('genre',filter_value);
+        const baseURL = `https://movies-tmdb-api.herokuapp.com/movies/`;
+        const baseURL1 = `https://movies-tmdb-api.herokuapp.com/genres/`;
 
-    showMovies(){
+        const latestMoviesData = axios.get(baseURL1+filter_value)
+        const latestMovies = await latestMoviesData.then(response => response.data.genreList);
+        const latestMoviesURLs = latestMovies.map(id => baseURL+id);
+                    
+        const tempArray = [];
+        for(let i = 0; i < latestMoviesURLs.length; i++){
+            const currentMovieData = await axios.get(latestMoviesURLs[i])
+            tempArray.push(currentMovieData.data);
+        }
+        console.log(tempArray)
+        this.setState({
+            latestMoviesData: tempArray
+        })
+        this.props.history.go(0);
+    };
 
+    showFilteredMovies(){
+        var i = 0;
         var result = [];
-        let i = 0;
+        console.log(this.state.latestMoviesData);
         for(;i<this.state.latestMoviesData.length;i++){
             var movie = this.state.latestMoviesData[i];
             var movieData = this.state.latestMoviesData[i];
-            if(movie.detailsData.original_title[0]==='B'&&movie.detailsData.original_title[1]==='o'){
-                continue;
-            }
-            if(movie.detailsData.original_language!=="en"){
-                continue;
-            }
             result.splice(0,0,
-               <div style = {{display:'inline-block'}}>
+            <div style = {{display:'inline-block'}}>
                 <MovieCard 
-                    id ={movie.showID} 
+                    id ={movie.id} 
                     data = {movieData}>
-              </MovieCard>
-              </div>
-              )   
+            </MovieCard>
+            </div>
+            )   
         }
         return result;
+
     }
-    
+
+
     render(){
         if(this.state.loading){
             return(
@@ -120,9 +141,9 @@ class MoviesList extends React.Component{
                    </Select>
                    
                </FormControl>
-   
+
                    <ul>
-                       {filter ? this.showFilteredMovies():this.showMovies()}
+                       {this.showFilteredMovies()}
                    </ul>
 
             </div>
@@ -130,4 +151,5 @@ class MoviesList extends React.Component{
         }
     }
 }
-export default MoviesList;
+
+export default Filter;

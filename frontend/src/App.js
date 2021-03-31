@@ -16,6 +16,7 @@ import MoviesList from './components/MoviesList';
 import Search from './components/Search';
 import { AuthProvider } from './contexts/AuthProvider';
 import TodayTV from './components/TodayTV';
+import Filter from './components/Filter';
 
 function App() {
     return (
@@ -37,6 +38,7 @@ function App() {
                     <Route path = "/" exact component = {MoviesList}/>
                     <Route path = "/search" exact component = {Search}/>
                     <Route path = "/today" exact component = {TodayTV}/>
+                    <Route path="/filter" exact component={Filter}/>
                 </div>
             </Router>
         </AuthProvider>

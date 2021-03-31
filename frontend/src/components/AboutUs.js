@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 import { db } from '../firebase';
-
-// const url = 'https://3.141.235.188:5000';
 
 const Person = props => (
     <ul className="list-group list-group-flush">
