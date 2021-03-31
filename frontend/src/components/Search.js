@@ -26,13 +26,17 @@ class Search extends React.Component{
         const baseURL1= `https://movies-tmdb-api.herokuapp.com/movieList/`;
 
         const latestMoviesData = axios.get(baseURL1+search_query);
-        // console.log("latest movies are",latestMoviesData);
+        console.log("latest movies are",latestMoviesData);
         const latestMovies = await latestMoviesData.then(response => response.data.movieList);
         const latestMoviesURLs = latestMovies.map(id => baseURL+id);
-        // console.log(latestMoviesURLs);
+        console.log(latestMoviesURLs);
         const tempArray = [];
         for(let i = 0; i < latestMoviesURLs.length; i++){
+            // if(i>18){
+            //     break;
+            // }
             const currentMovieData = await axios.get(latestMoviesURLs[i])
+            console.log(currentMovieData);
             tempArray.push(currentMovieData.data);
         }
         console.log(tempArray)
