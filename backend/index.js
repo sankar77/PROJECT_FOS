@@ -1,4 +1,4 @@
-var cors = require('cors')
+// var cors = require('cors')
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -24,7 +24,7 @@ app.listen(config.port, () => {
     console.log(`Server is running on port: ${config.port}`);
 });
 
-app.use(cors());
+// app.use(cors());
 app.use('/movies', movieRoutes.routes);
 app.use('/tvshows', tvShowRoutes.routes);
 app.use('/movieList',getMovieRoutes.routes);
