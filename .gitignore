@@ -6,9 +6,10 @@
 .pnp.js
 /frontend/node_modules
 /frontend/package-lock.json
-/frontend/.eslintcache*
+/frontend/.eslintcache
 /backend/node_modules
 /backend/certs
+/backend/package-lock.json
 
 # datasets
 /backend/title.*
