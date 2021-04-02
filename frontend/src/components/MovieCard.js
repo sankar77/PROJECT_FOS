@@ -62,9 +62,19 @@ class MovieCard extends Component {
             <Popover id="popover-basic" style={scrollable}>
                 <Popover.Content>
                     <ul className="list-group flush">
-                        {this.state.reviews.map( listItem => (
-                            <li className="list-group-item">{listItem}</li>
+                        
+                        {this.state.reviews
+                        .filter( listItem => listItem[1] < 0 )
+                        .map( listItem => (
+                            <li className="list-group-item" style={{color: 'red'}}>{listItem[0]}</li>
                         ))}
+
+                        {this.state.reviews
+                        .filter( listItem => listItem[1] > 0 )
+                        .map( listItem => (
+                            <li className="list-group-item" style={{color: 'green'}}>{listItem[0]}</li>
+                        ))}
+                        
                     </ul>
                 </Popover.Content>
             </Popover>
