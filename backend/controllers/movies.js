@@ -1,5 +1,7 @@
 const { response } = require('express');
 const fetch = require('node-fetch');
+var Sentiment = require('sentiment');
+var sentiment = new Sentiment();
 
 const apiKey="42d845ec0caf10ecc9f34f1648197aee";
 const videoBase = "https://www.youtube.com/watch?v=";
@@ -111,12 +113,13 @@ const fetchReviews = (movieID) => {
         .then(response => response.json())
         .then( (data) => {
                 try {
-                    var reviews = data.results.map( eachReviewInfo => `${eachReviewInfo.content} - ${eachReviewInfo.author}` );
+                    var reviews = data.results.map( eachReviewInfo => `${eachReviewInfo.content}` );
+                    var sentiments = reviews.map( review => [review, sentiment.analyze(review).comparative] );
                 }
                 catch(error) {
                     var reviews = ["There aren't any reviews for you!"]
                 }
-                resolve(reviews);
+                resolve(sentiments);
             },
             (error) => {
                 reject(error);
