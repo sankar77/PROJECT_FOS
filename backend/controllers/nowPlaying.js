@@ -2,7 +2,6 @@ const { response } = require('express');
 const fetch = require('node-fetch');
 const axios = require('axios');
 const firebase = require('../db');
-const collector = require('../models/collector');
 const firestore = firebase.firestore();
 
 const apiKey="42d845ec0caf10ecc9f34f1648197aee";
