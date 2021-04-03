@@ -1,8 +1,8 @@
 const { response } = require('express');
 const fetch = require('node-fetch');
 const axios = require('axios');
-const firebase = require('./db');
-const collector = require('./models/collector');
+const firebase = require('../db');
+const collector = require('../models/collector');
 const firestore = firebase.firestore();
 
 const apiKey="42d845ec0caf10ecc9f34f1648197aee";
@@ -91,19 +91,6 @@ const getnowPlaying = async (req, res) => {
         const moviesTvshows = await firestore.collection('collector');
         const data = await moviesTvshows.get();
 
-        // if (!data.empty) {
-        //     if (flag){
-        //         firestore.collection('collector').doc('new_doc1').set(JSON.parse( JSON.stringify(State)));
-        //         firestore.collection('collector').doc('new_doc').delete();
-        //     }
-        //     else{
-        //         firestore.collection('collector').doc('new_doc').set(JSON.parse( JSON.stringify(State)));
-        //         firestore.collection('collector').doc('new_doc1').delete();
-        //     }
-
-        //     flag=!flag;
-        // }
-
         if (!data.empty) {
             firestore.collection('collector').doc('new_doc').delete();
         }
@@ -118,16 +105,7 @@ const getnowPlaying = async (req, res) => {
     
 }
 
-const schedule = require('node-schedule');
+module.exports = {
+    getnowPlaying
+}
 
-const rule = new schedule.RecurrenceRule();
-rule.minute = 30;
-
-// const job = schedule.scheduleJob(rule, getnowPlaying());
-
-const job= schedule.scheduleJob(rule, function(){
-    getnowPlaying();
-});
-
-
-// getnowPlaying();
