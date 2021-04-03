@@ -21,7 +21,7 @@ const {getnowPlaying} = require('./controllers/collector');
 const schedule = require('node-schedule');
 
 const rule = new schedule.RecurrenceRule();
-rule.minute = 12;
+rule.minute = 35;
 
 const job= schedule.scheduleJob(rule, function(){
     console.log("working");
