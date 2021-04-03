@@ -121,7 +121,7 @@ const getnowPlaying = async (req, res) => {
 const schedule = require('node-schedule');
 
 const rule = new schedule.RecurrenceRule();
-rule.minute = 30;
+rule.minute = 14;
 
 // const job = schedule.scheduleJob(rule, getnowPlaying());
 
