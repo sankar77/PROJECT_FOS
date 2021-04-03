@@ -79,7 +79,6 @@ const tvshowDetails = () => {
 
 
 const getnowPlaying = async (req, res) => {
-    console.log("first");
     var moviedetails = await movieDetails();
     State.movieList = moviedetails.movies;
     var tvshowdetails = await tvshowDetails();
