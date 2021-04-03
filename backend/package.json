@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node collector.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -20,6 +20,7 @@
     "ml-sentiment": "^2.0.7",
     "mongoose": "^5.11.19",
     "node-fetch": "^2.6.1",
+    "node-schedule": "^2.0.0",
     "nodemon": "^2.0.7",
     "sentiment": "^5.0.2",
     "stream-json": "^1.7.1"
