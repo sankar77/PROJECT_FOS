@@ -204,5 +204,9 @@ const fetchMovie = async (req, res) => {
 
 module.exports = {
     fetchMovie, 
-    fetchDetails
+    fetchDetails,
+    fetchCastAndCrew,
+    fetchVideos,
+    fetchReviews,
+    fetchProviders
 }
