@@ -116,7 +116,7 @@ const fetchReviews = (movieID) => {
                     var sentiments = reviews.map( review => [review, sentiment.analyze(review).comparative] );
                 }
                 catch(error) {
-                    var reviews = ["There aren't any reviews for you!"]
+                    var reviews = [["There aren't any reviews for you!", 0]]
                 }
                 resolve(sentiments);
             },

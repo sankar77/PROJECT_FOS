@@ -42,7 +42,8 @@ mockNowPlaying =
 test('should fetch now playing', async () => {
 
     axios.get.mockResolvedValue(mockNowPlaying);
-    const nowPlaying = await axios.get('http://movies-tmdb-api.herokuapp.com/nowplaying/');
-    expect(nowPlaying.tvshowList.length).toEqual(9);
+    const nowPlaying = await axios.get('http://localhost:5000/nowplaying');
+    expect(nowPlaying.tvshowList.length).toBeGreaterThan(0);
+    expect(nowPlaying.movieList.length).toBeGreaterThan(0);
 
   });
