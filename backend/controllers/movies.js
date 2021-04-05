@@ -28,7 +28,6 @@ const fetchDetails = (movieID) => {
         fetch(url)
         .then(response => response.json())
         .then( (data) => {
-            console.log(data)
                 
                 try {
                     var detailsData = data;
@@ -204,5 +203,6 @@ const fetchMovie = async (req, res) => {
 }
 
 module.exports = {
-    fetchMovie
+    fetchMovie, 
+    fetchDetails
 }
