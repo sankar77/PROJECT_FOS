@@ -28,7 +28,6 @@ const fetchDetails = (movieID) => {
         fetch(url)
         .then(response => response.json())
         .then( (data) => {
-            console.log(data)
                 
                 try {
                     var detailsData = data;
@@ -117,7 +116,7 @@ const fetchReviews = (movieID) => {
                     var sentiments = reviews.map( review => [review, sentiment.analyze(review).comparative] );
                 }
                 catch(error) {
-                    var reviews = ["There aren't any reviews for you!"]
+                    var reviews = [["There aren't any reviews for you!", 0]]
                 }
                 resolve(sentiments);
             },
@@ -204,5 +203,10 @@ const fetchMovie = async (req, res) => {
 }
 
 module.exports = {
-    fetchMovie
+    fetchMovie, 
+    fetchDetails,
+    fetchCastAndCrew,
+    fetchVideos,
+    fetchReviews,
+    fetchProviders
 }
