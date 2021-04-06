@@ -37,3 +37,5 @@ app.use('/genres',getgenremovies.routes);
 app.get('/', (req,res) => {
     res.send("Hello World!")
 });
+
+module.exports = app;
