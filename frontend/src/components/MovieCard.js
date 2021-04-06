@@ -6,6 +6,7 @@ const imageBase = "http://image.tmdb.org/t/p/w185";
 const scrollable = {
     height: '40rem',
     overflow: 'auto'
+    // fixed ids
 };
 
 class MovieCard extends Component {
