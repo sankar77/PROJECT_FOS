@@ -41,7 +41,7 @@
   - Written 4 unit-tests without mock objects
   - Written 1 integration test without mock objects
   - Written 11 test-doubles using mock objects to fake API calls
-  - Written 4 acceptance tests
+  - Written 12 acceptance tests
   - Data Analyzer - analyzing sentiments of reviews displayed on Movie/TV-Show cards.
   - Data Collector - Collecting data independently from our backend API endpoints, on TV-Shows for every 60 minutes and storing it in firestore.
 
