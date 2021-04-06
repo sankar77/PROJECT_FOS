@@ -68,7 +68,7 @@ const NavBar = () => {
                     <form className="form-inline my-2 my-lg-0 col-6">
                         <label htmlFor="searchValue"></label>
                     <input className="form-control mr-sm-2 col-8" type="search" placeholder="Search Movies/TV Shows" aria-label="Search" id="searchValue"/>
-                    <button className="btn btn-outline-primary my-2 my-sm-0" type="submit" onClick={onClick}>Search</button>
+                    <button className="btn btn-outline-primary my-2 my-sm-0" type="submit" id="searchClick" onClick={onClick}>Search</button>
                     <ul>
                         {result}
                     </ul>
