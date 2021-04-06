@@ -31,7 +31,7 @@ class MovieCard extends Component {
 
     castPopover(){
         return (
-            <Popover id="popover-basic" style={scrollable}>
+            <Popover id="popover-basic-cast" style={scrollable}>
                 <Popover.Content>
                     <ul className="list-group flush">
                         {this.state.cast.map( listItem => (
@@ -110,22 +110,22 @@ class MovieCard extends Component {
                     <Container>
                         <Row>
                             <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.castPopover()}>
-                                <Button variant="link">Cast Details</Button>
+                                <Button variant="link" id="castDetails">Cast Details</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
                             <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.crewPopover()}>
-                                <Button variant="link">Crew Details</Button>
+                                <Button variant="link" id="crewDetails">Crew Details</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
                             <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.reviewsPopover()}>
-                                <Button variant="link">Reviews</Button>
+                                <Button variant="link" id="reviews">Reviews</Button>
                             </OverlayTrigger>
                         </Row>
                         <Row>
                             <OverlayTrigger trigger="click" rootClose placement="auto" overlay={this.videosPopover()}>
-                                <Button variant="link">Related Videos</Button>
+                                <Button variant="link" id="relatedVideos">Related Videos</Button>
                             </OverlayTrigger>
                         </Row>
                     </Container>
@@ -156,7 +156,7 @@ class MovieCard extends Component {
                         </Card.Text>
                         
                         <OverlayTrigger trigger="click" rootClose placement="auto" overlay = {this.popover()}>
-                            <Button variant="info">More Details</Button>
+                            <Button variant="info" id='moreDetails'>More Details</Button>
                         </OverlayTrigger>
                     </Card.Body>
                 
