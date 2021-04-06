@@ -45,7 +45,7 @@ class MovieCard extends Component {
 
     crewPopover(){
         return (
-            <Popover id="popover-basic" style={scrollable}>
+            <Popover id="popover-basic-crew" style={scrollable}>
                 <Popover.Content>
                     <ul className="list-group">
                         {this.state.crew.map( listItem => (
@@ -59,7 +59,7 @@ class MovieCard extends Component {
 
     reviewsPopover(){
         return (
-            <Popover id="popover-basic" style={scrollable}>
+            <Popover id="popover-basic-reviews" style={scrollable}>
                 <Popover.Content>
                     <ul className="list-group flush">
                         
@@ -83,7 +83,7 @@ class MovieCard extends Component {
 
     videosPopover(){
         return (
-            <Popover id="popover-basic" style={scrollable}>
+            <Popover id="popover-basic-videos" style={scrollable}>
                 <Popover.Content>
                     <ul className="list-group flush">
                         {this.state.videos.map( listItem => (
