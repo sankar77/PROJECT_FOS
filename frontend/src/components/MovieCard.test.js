@@ -7,6 +7,7 @@ let page
 beforeAll(async () => {
   browser = await puppeteer.launch({})
   page = await browser.newPage()
+  // weird glitch
 })
 
   describe('User sees information for a movie', () => {
