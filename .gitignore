@@ -12,6 +12,7 @@
 /backend/package-lock.json
 /collector/node_modules
 /collector/package-lock.json
+/frontend/*.png
 
 # datasets
 /backend/title.*
