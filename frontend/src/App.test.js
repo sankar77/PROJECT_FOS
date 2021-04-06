@@ -69,7 +69,6 @@ describe('User should be able to search for a movie or TV show', () => {
             return document.querySelector('.card-title').innerText
         })
 
-        await page.screenshot({path: 'example.png'});
         expect(result.length).toBeGreaterThanOrEqual(1);
     }, 10000)
 })
