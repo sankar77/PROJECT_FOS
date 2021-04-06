@@ -64,7 +64,15 @@ const fetchDetails = (tvShowID) => {
                         `${seasonInfo.poster_path}`
                     ])
                 } catch (error) {
-                    var seasons = ["Seasons Information Not Available for this TV Show..."]
+                    var seasons = [
+                        [
+                            "Dates Unavailable",
+                            "Episode Count Unavailable",
+                            "Season N/A",
+                            "Season Summary Unavailable",
+                            "Poster Path Unavailable"
+                            ]
+                    ]
                 }
 
                 resolve({
@@ -131,7 +139,7 @@ const fetchReviews = (tvShowID) => {
                     var sentiments = reviews.map( review => [review, sentiment.analyze(review).comparative] );
                 }
                 catch(error) {
-                    var reviews = ["There aren't any reviews for you!"]
+                    var reviews = [["There aren't any reviews for you!", 0]]
                 }
                 resolve(sentiments);
             },
@@ -219,5 +227,10 @@ const fetchTV = async (req, res) => {
 }
 
 module.exports = {
-    fetchTV
+    fetchTV, 
+    fetchDetails,
+    fetchCastAndCrew,
+    fetchVideos,
+    fetchReviews,
+    fetchProviders
 }

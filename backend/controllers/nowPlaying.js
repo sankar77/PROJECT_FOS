@@ -16,9 +16,9 @@ const State = {
  const movieDetails = async() => {
     
     const moviesTvshows =  await firestore.collection('collector').doc('new_doc');
-    console.log("movietvshows are ",moviesTvshows);
+    // console.log("movietvshows are ",moviesTvshows);
     const moviedata =  await moviesTvshows.get();
-    console.log("data  are ",moviedata);
+    // console.log("data  are ",moviedata);
     return new Promise( (resolve, reject) => {
 
         resolve({
@@ -60,10 +60,10 @@ const getnowPlaying = async (req, res) => {
     var moviedetails = await movieDetails();
 
     State.movieList = moviedetails.movies;
-    console.log("movies is",State.movieList);
+    // console.log("movies is",State.movieList);
     var tvshowdetails = await tvshowDetails();
     State.tvshowList = tvshowdetails.tvshows;
-    console.log("tv show",State.tvshowList);
+    // console.log("tv show",State.tvshowList);
 
     res.send(State)
 
