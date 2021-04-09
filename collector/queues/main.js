@@ -1,5 +1,8 @@
 // Load the AWS SDK for Node.js
 var AWS = require('aws-sdk');
+
+let date_ob = new Date();
+
 // Set the region 
 AWS.config.update({region: 'us-east-2'});
 
@@ -65,8 +68,13 @@ function pushToQueue(queueURL, messageJSON){
         if (err) {
           console.log("Error", err);
         } else {
-          console.log("Success", data.MessageId);
-        }
+            let date = ("0" + date_ob.getDate()).slice(-2);
+            let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+            let year = date_ob.getFullYear();
+            let hours = date_ob.getHours();
+            let minutes = date_ob.getMinutes();
+            let seconds = date_ob.getSeconds();
+          console.log(`Pushing data id: ${data.MessageId} to Queue at ${year}-${month}-${date} ${hours}:${minutes}:${seconds}`);        }
       });
 }
 
@@ -88,7 +96,14 @@ function pollFromQueue(queueURL) {
         if (err) {
           console.log("Receive Error", err);
         } else if (data.Messages) {
-          console.log(JSON.parse(data.Messages[0].Body));
+        //   console.log(JSON.parse(data.Messages[0].Body));
+            let date = ("0" + date_ob.getDate()).slice(-2);
+            let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+            let year = date_ob.getFullYear();
+            let hours = date_ob.getHours();
+            let minutes = date_ob.getMinutes();
+            let seconds = date_ob.getSeconds();
+          console.log(`Data Fetched from Queue at ${year}-${month}-${date} ${hours}:${minutes}:${seconds}`)
           var deleteParams = {
             QueueUrl: queueURL,
             ReceiptHandle: data.Messages[0].ReceiptHandle
@@ -104,5 +119,6 @@ function pollFromQueue(queueURL) {
       });
 }
 
+pollFromQueue(queueURL);
 pushToQueue(queueURL, mockObject);
-setTimeout(pollFromQueue, 3000, queueURL);
+// setTimeout(pollFromQueue, 3000, queueURL);
