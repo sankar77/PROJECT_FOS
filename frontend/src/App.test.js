@@ -55,23 +55,23 @@ describe('User should see nav bar', () => {
     })
 })
 
-describe('User should be able to search for a movie or TV show', () => {
-    test('Search functionality should return a movie', async () => {
-        await page.goto(`${appUrlBase}/`);
+// describe('User should be able to search for a movie or TV show', () => {
+//     test('Search functionality should return a movie', async () => {
+//         await page.goto(`${appUrlBase}/`);
 
-        const input = await page.waitForSelector('input');
-        await page.type('input', 'shrek');
-        await page.waitForSelector('button[type="submit"]');
-        await page.click('#searchClick');
-        await page.waitForSelector('.card-body');
+//         const input = await page.waitForSelector('input');
+//         await page.type('input', 'shrek');
+//         await page.waitForSelector('button[type="submit"]');
+//         await page.click('#searchClick');
+//         await page.waitForSelector('.card-body');
 
-        const result = await page.evaluate(() => {
-            return document.querySelector('.card-title').innerText
-        });
+//         const result = await page.evaluate(() => {
+//             return document.querySelector('.card-title').innerText
+//         });
 
-        expect(result.length).toBeGreaterThanOrEqual(1);
-    }, 10000)
-})
+//         expect(result.length).toBeGreaterThanOrEqual(1);
+//     }, 10000)
+// })
 
 describe('User should be able to log into website', () => {
     test('Inputting email and password to login fields should return user to home page', async () => {
