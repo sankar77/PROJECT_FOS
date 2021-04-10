@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const config = require('./config');
+const { pollFromQueue, pushToQueue, queueURL } = require('./queues/main')
+
 
 const app = express();
 
