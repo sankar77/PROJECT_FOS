@@ -1,4 +1,5 @@
 // var cors = require('cors')
+require('newrelic');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -37,5 +38,8 @@ app.use('/genres',getgenremovies.routes);
 app.get('/', (req,res) => {
     res.send("Hello World!")
 });
+app.get('/health',(req,res) =>{
+    res.send("Healthy");
+})
 
 module.exports = app;
