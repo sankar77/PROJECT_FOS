@@ -21,6 +21,8 @@
  
  **Iteration Planning:** [Click here to view our Iteration Planning](https://github.com/sankar77/PROJECT_FOS/wiki/Iteration-Planning)
  
+ **Architecture Diagram:** [Click here to view our Architecture Diagram](https://github.com/sankar77/PROJECT_FOS/wiki/Application-Architecture)
+ 
  **Testing:** [Click here to learn more on our testing](https://github.com/sankar77/PROJECT_FOS/wiki/Testing)
 
  **Features Completed So Far:**
