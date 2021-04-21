@@ -10,14 +10,22 @@ const videoBase = "https://www.youtube.com/watch?v=";
 const tvShowState = {
     showID: "",
     detailsData: {},
-    genres: [],
-    productionCompanies: [],
-    cast: [],
-    crew: [],
-    reviews: [],
-    videos: [],
-    providers: [],
-    seasons: []
+    genres: ["Currently No Info Available on Genres..."],
+    productionCompanies: ["Currently No Info Available on Production Companies..."],
+    cast: ["No Cast Information Available!"],
+    crew: ["No Crew Information Available!"],
+    reviews: [["There aren't any reviews for you!", 0]],
+    videos: ["Videos Currently Unavailable"],
+    providers: ["Information Not Available"],
+    seasons: [
+        [
+            "Dates Unavailable",
+            "Episode Count Unavailable",
+            "Season N/A",
+            "Season Summary Unavailable",
+            "Poster Path Unavailable"
+            ]
+    ]
 }
 
 const fetchDetails = (tvShowID) => {

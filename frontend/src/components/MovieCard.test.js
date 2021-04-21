@@ -23,7 +23,7 @@ describe('User sees information for a movie', () => {
     const result = await page.evaluate(() => {
       return [...document.querySelectorAll('p')].map(el => el.textContent);
     })
-    expect(result.length).toBeGreaterThanOrEqual(0);
+    expect(result.length).toBeGreaterThanOrEqual(1);
   }, 20000)
 
   test('Clicking on cast details provides casting info', async () => {
@@ -33,7 +33,7 @@ describe('User sees information for a movie', () => {
     const result = await page.evaluate(() => {
       return [...document.querySelectorAll('li.list-group-item')].map(el => el.textContent);
     })
-    expect(result.length).toBeGreaterThanOrEqual(0);
+    expect(result.length).toBeGreaterThanOrEqual(1);
   }, 20000)
 
   test('Clicking on crew details provides casting info', async () => {
@@ -43,7 +43,7 @@ describe('User sees information for a movie', () => {
     const result = await page.evaluate(() => {
       return [...document.querySelectorAll('li.list-group-item')].map(el => el.textContent);
     })
-    expect(result.length).toBeGreaterThanOrEqual(0);
+    expect(result.length).toBeGreaterThanOrEqual(1);
   }, 20000)
 
   test('Clicking on reviews provides review info', async () => {
@@ -61,7 +61,7 @@ describe('User sees information for a movie', () => {
     const result = await page.evaluate(() => {
       return [...document.querySelectorAll('li.list-group-item')].map(el => el.textContent);
     })
-    expect(result.length).toBeGreaterThanOrEqual(0);
+    expect(result.length).toBeGreaterThanOrEqual(1);
   }, 20000)
 
   test('Clicking on related provides additional videos', async () => {
@@ -81,7 +81,7 @@ describe('User sees information for a movie', () => {
       return [...document.querySelectorAll('li.list-group-item')].map(el => el.textContent);
     })
 
-    expect(result.length).toBeGreaterThanOrEqual(0);
+    expect(result.length).toBeGreaterThanOrEqual(1);
   }, 20000)
 })
 

@@ -9,14 +9,14 @@ const videoBase = "https://www.youtube.com/watch?v=";
 const movieState = {
     showID: "",
     detailsData: {},
-    genres: [],
-    productionCompanies: [],
-    cast: [],
-    crew: [],
-    reviews: [],
-    videos: [],
-    providers: [],
-    summary: ""
+    genres: ["Currently No Info Available on Genres..."],
+    productionCompanies: ["Currently No Info Available on Production Companies..."],
+    cast: ["No Cast Information Available!"],
+    crew: ["No Crew Information Available!"],
+    reviews: [["There aren't any reviews for you!", 0]],
+    videos: ["Videos Currently Unavailable"],
+    providers: ["Information Not Available"],
+    summary: "No Summary Available for this Movie..."
 }
 
 const fetchDetails = (movieID) => {
