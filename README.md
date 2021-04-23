@@ -24,6 +24,10 @@
  **Architecture Diagram:** [Click here to view our Architecture Diagram](https://github.com/sankar77/PROJECT_FOS/wiki/Application-Architecture)
  
  **Testing:** [Click here to learn more on our testing](https://github.com/sankar77/PROJECT_FOS/wiki/Testing)
+ 
+ **Presentation Slides:** [Click here to view our presentation slides](https://docs.google.com/presentation/d/1zbgp540Tj1jViNbMwabI1_3MDp4gQUNLKUlMj0mQXrU/edit?usp=sharing)
+ 
+ **Video Demo:** [Click here to view our application demo](https://youtu.be/x2hsz6hoiBg)
 
  **Features Completed So Far:**
   - Alert the movie/TV show name once the search space is filled and search button clicked.
