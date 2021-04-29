@@ -11,6 +11,8 @@
  - Tiffany Phan
  - Neel Katuri
 
+ **Project Rubric Guidance:** [Click here to read detailed project rubric guidance](https://github.com/sankar77/PROJECT_FOS/wiki/Project-Rubric-Guidance)
+ 
  **Project Overview:** [Click here for our Wiki page](https://github.com/sankar77/PROJECT_FOS/wiki/Project-Overview)
 
  **Project Planning:** [Click here for our stories on pivotal tracker](https://www.pivotaltracker.com/n/projects/2491387)
